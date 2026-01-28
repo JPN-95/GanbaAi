@@ -1,0 +1,16 @@
+<div class="container">
+
+  <h1> Hello from Test Show </h1>
+
+  <%= @test.title %>
+  <%= @test.category %>
+
+  <%= @test.questions.each do |q| %>
+    <div class="card">
+    <p> The question: <%= q.question %> </p>
+    <p>The options: <%= q.generated_answers %> </p>
+    <p>The correct answer: <%= q.correct_answer %></p>
+    <p>The user's answer: <%= q.user_answer %></p>
+    </div>
+  <% end %>
+</div>
