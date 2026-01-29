@@ -9,59 +9,69 @@
 #   end
 puts "creating db:)"
 
-User.create!(id:1, email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
+User.create!( email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
 
-Test.create!(id:1, title: "cool first test", category:"grammar", user_id:1)
-Test.create!(id:2, title: "mid second test", category:"vocab", user_id:1)
+Test.create!( title: "cool first test", category:"grammar", user_id:1)
+Test.create!( title: "mid second test", category:"vocab", user_id:1)
 
-Question.create!(id:1,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:1)
-Question.create!(id:2,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:1)
-Question.create!(id:3,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:1)
-Question.create!(id:4,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:1)
-Question.create!(id:5,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:1)
 
-Question.create!(id:6,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:2)
-Question.create!(id:7,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:2)
-Question.create!(id:8,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:2)
-Question.create!(id:9,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:2)
-Question.create!(id:10,
+Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Dolor sit amet consectetur adipiscing elit quisque faucibus."],
+  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
+  correct_answerr:"Answer 2",
   user_answer:"",
   test_id:2)
