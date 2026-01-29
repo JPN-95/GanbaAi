@@ -1,0 +1,56 @@
+=> 
+[[32m#<Question:0x000077631ec84c88[0m
+  id: [34m[1m1[0m,
+  question: [31m[1m"[0m[31mLorem ipsum dolor sit amet consectetur adipiscing elit.[0m[31m[1m"[0m,
+  correct_answer: [36m[1mnil[0m,
+  generated_answers:
+   [[31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m,
+    [31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m],
+  user_answer: [31m[1m"[0m[31m[1m"[0m,
+  test_id: [34m[1m1[0m,
+  created_at: Tue, 27 Jan 2026 13:04:29.677713000 UTC +00:00,
+  updated_at: Tue, 27 Jan 2026 13:04:29.677713000 UTC +00:00[32m>[0m,
+ [32m#<Question:0x000077631f0f8ad0[0m
+  id: [34m[1m2[0m,
+  question: [31m[1m"[0m[31mLorem ipsum dolor sit amet consectetur adipiscing elit.[0m[31m[1m"[0m,
+  correct_answer: [36m[1mnil[0m,
+  generated_answers:
+   [[31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m,
+    [31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m],
+  user_answer: [31m[1m"[0m[31m[1m"[0m,
+  test_id: [34m[1m1[0m,
+  created_at: Tue, 27 Jan 2026 13:04:29.693843000 UTC +00:00,
+  updated_at: Tue, 27 Jan 2026 13:04:29.693843000 UTC +00:00[32m>[0m,
+ [32m#<Question:0x000077631f0f8990[0m
+  id: [34m[1m3[0m,
+  question: [31m[1m"[0m[31mLorem ipsum dolor sit amet consectetur adipiscing elit.[0m[31m[1m"[0m,
+  correct_answer: [36m[1mnil[0m,
+  generated_answers:
+   [[31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m,
+    [31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m],
+  user_answer: [31m[1m"[0m[31m[1m"[0m,
+  test_id: [34m[1m1[0m,
+  created_at: Tue, 27 Jan 2026 13:04:29.710163000 UTC +00:00,
+  updated_at: Tue, 27 Jan 2026 13:04:29.710163000 UTC +00:00[32m>[0m,
+ [32m#<Question:0x000077631f0f8850[0m
+  id: [34m[1m4[0m,
+  question: [31m[1m"[0m[31mLorem ipsum dolor sit amet consectetur adipiscing elit.[0m[31m[1m"[0m,
+  correct_answer: [36m[1mnil[0m,
+  generated_answers:
+   [[31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m,
+    [31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m],
+  user_answer: [31m[1m"[0m[31m[1m"[0m,
+  test_id: [34m[1m1[0m,
+  created_at: Tue, 27 Jan 2026 13:04:29.728444000 UTC +00:00,
+  updated_at: Tue, 27 Jan 2026 13:04:29.728444000 UTC +00:00[32m>[0m,
+ [32m#<Question:0x000077631f0f8710[0m
+  id: [34m[1m5[0m,
+  question: [31m[1m"[0m[31mLorem ipsum dolor sit amet consectetur adipiscing elit.[0m[31m[1m"[0m,
+  correct_answer: [36m[1mnil[0m,
+  generated_answers:
+   [[31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m,
+    [31m[1m"[0m[31mDolor sit amet consectetur adipiscing elit quisque faucibus.[0m[31m[1m"[0m],
+  user_answer: [31m[1m"[0m[31m[1m"[0m,
+  test_id: [34m[1m1[0m,
+  created_at: Tue, 27 Jan 2026 13:04:29.745308000 UTC +00:00,
+  updated_at: Tue, 27 Jan 2026 13:04:29.745308000 UTC +00:00[32m>[0m]
