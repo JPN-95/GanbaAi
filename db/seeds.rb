@@ -7,71 +7,41 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create!_by!(name: genre_name)
 #   end
-puts "creating db:)"
+puts "Cleaning database..."
 
-User.create!( email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
+Question.destroy_all
+Test.destroy_all
+User.destroy_all
 
-Test.create!( title: "cool first test", category:"grammar", user_id:1)
-Test.create!( title: "mid second test", category:"vocab", user_id:1)
+puts "Creating user..."
+user = User.create!(
+  email: "patnew1@gmail.co",
+  password: "bigsecret",
+  username: "lol"
+)
 
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
+test_data = [
+  { title: "Cool First Test", category: "Grammar" },
+  { title: "Mid Second Test", category: "Vocabulary" }
+]
 
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
+test_data.each do |data|
+
+  test = user.tests.create!(
+    title: data[:title],
+    category: data[:category]
+  )
+
+  5.times do |i|
+    answers = ["Answer A", "Answer B", "Answer C", "Answer D"]
+
+    test.questions.create!(
+      question: "Question #{i + 1}: What is the meaning of Lorem Ipsum?",
+      generated_answers: answers,
+      correct_answer: answers.sample,
+      user_answer: "",
+    )
+  end
+end
+
+puts "Success! Created #{Test.count} tests and #{Question.count} questions."
