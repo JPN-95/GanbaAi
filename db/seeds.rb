@@ -44,4 +44,19 @@ test_data.each do |data|
   end
 end
 
+finished_test = user.tests.create!(
+  title: "Finished Vocab Test",
+  category: "Vocabulary"
+)
+5.times do |i|
+  answers = ["Answer A", "Answer B", "Answer C", "Answer D"]
+
+  finished_test.questions.create!(
+    question: "Question #{i + 1}: What is the meaning of Lorem Ipsum?",
+    generated_answers: answers,
+    correct_answer: answers.sample,
+    user_answer: answers.sample,
+  )
+end
+
 puts "Success! Created #{Test.count} tests and #{Question.count} questions."
