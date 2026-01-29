@@ -4,22 +4,17 @@ class UsersController < ApplicationController
     # @user = User.find(current_user)
   end
   def dashboard
-    @user_id = current_user.id
-    @test = Test.find(params[:user_id])
+    @tests = Test.where(user_id: current_user.id)
+    @questions = Question.where(test_id: @tests.ids)
+    @counter = 1
   end
 
   def progress
-    @test = Test.find(params[:user_id])
+    # user_correct_answers = @question.
 
   end
-
 
   def set_time_zone
     Time.zone = current_user.time_zone
-  end
-
-  private
-  def params_test
-    require(:user).permit(:user_id)
   end
 end

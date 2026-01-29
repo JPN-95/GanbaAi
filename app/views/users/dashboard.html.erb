@@ -1,8 +1,19 @@
 <div class="container">
   <h1>Dashboard</h1>
   <h2>Welcome <%= current_user.username %></h2>
-  <h1> <%= @test %></h1>
-
+  <% @tests.each do |test| %>
+    <% test.questions.each do |question| %>
+      <p> <%= test.category %></p>
+      <p> <%= question.question %></p>
+      <% if question.user_answer.to_s == question.correct_answer.to_s %>
+        <p><%= question.correct_answer %></p>
+      <% else %>
+        <p><%= question.user_answer + "wrong answer#{@counter}"%></p>
+    <% end %>
+    <% @counter = @counter+1 %>
+    <% end %>
+  <% end %>
+<%= @questions.count %>
 </div>
 
 <div class="dashboard_cards container mt-4">
@@ -17,15 +28,11 @@
 
 
 
-
-
-
-
 <div id="carouselExample" class="carousel slide" data-bs-ride="false">
   <div class="carousel-inner">
 
 <div class="dashboard_cards container mt-4">
-  <h2 class="mb-4">My Upcoming Quizzes</h2>
+  <h2 class="mb-4">My Previous Quizzes</h2>
 
   <div id="carouselUpcomingQuizzes" class="carousel slide" data-bs-ride="false">
     <div class="carousel-inner">
@@ -64,8 +71,9 @@
 
       <div class="carousel-item">
         <div class="row">
+
           <div class="col-md-4">
-            <div class="card text-bg-danger mb-3">
+            <div class="card text-bg-primary mb-3">
               <div class="card-header">Header 4</div>
               <div class="card-body">
                 <h5 class="card-title">Vocabulary</h5>
@@ -73,6 +81,27 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 4</div>
+              <div class="card-body">
+                <h5 class="card-title">Vocabulary</h5>
+                <p class="card-text">New.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 4</div>
+              <div class="card-body">
+                <h5 class="card-title">Vocabulary</h5>
+                <p class="card-text">New.</p>
+              </div>
+            </div>
+          </div>
+
           </div>
       </div>
 
@@ -130,7 +159,7 @@
       <div class="carousel-item">
         <div class="row">
           <div class="col-md-4">
-            <div class="card text-bg-danger mb-3">
+            <div class="card text-bg-primary mb-3">
               <div class="card-header">Header 4</div>
               <div class="card-body">
                 <h5 class="card-title">Vocabulary</h5>
