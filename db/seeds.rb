@@ -7,56 +7,38 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create!_by!(name: genre_name)
 #   end
-puts "Cleaning database..."
-
+puts "creating db:)"
 Question.destroy_all
 Test.destroy_all
 User.destroy_all
 
-puts "Creating user..."
-user = User.create!(
-  email: "patnew1@gmail.co",
-  password: "bigsecret",
-  username: "lol"
-)
+questions = ["lorum ipsum?", "how many provinces in canada", "whats your name?", "whats your fav color?"]
+answers = ["answer a", "answer b", "answer c", "answer d"]
 
-test_data = [
-  { title: "Cool First Test", category: "Grammar" },
-  { title: "Mid Second Test", category: "Vocabulary" }
-]
+patrick = User.create!(email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
+katie = User.create!( email: "ru1eBr1tania1@gmail.co.uk", password:"crumpet", username:"uk_swag_tea")
 
-test_data.each do |data|
+test1 = Test.create!(title:"Vocab N5 Test", category: "Vocabulary", user:patrick)
+test2 = Test.create!( title: "Unfinished Grammar Test", category:"Grammar", user:patrick)
 
-  test = user.tests.create!(
-    title: data[:title],
-    category: data[:category]
-  )
-
-  5.times do |i|
-    answers = ["Answer A", "Answer B", "Answer C", "Answer D"]
-
-    test.questions.create!(
-      question: "Question #{i + 1}: What is the meaning of Lorem Ipsum?",
-      generated_answers: answers,
-      correct_answer: answers.sample,
-      user_answer: "",
-    )
-  end
-end
-
-finished_test = user.tests.create!(
-  title: "Finished Vocab Test",
-  category: "Vocabulary"
-)
-5.times do |i|
-  answers = ["Answer A", "Answer B", "Answer C", "Answer D"]
-
-  finished_test.questions.create!(
-    question: "Question #{i + 1}: What is the meaning of Lorem Ipsum?",
+5.times do |x|
+  Question.create!(
+    question: questions.sample,
     generated_answers: answers,
     correct_answer: answers.sample,
     user_answer: answers.sample,
+    test: test1
   )
 end
 
-puts "Success! Created #{Test.count} tests and #{Question.count} questions."
+5.times do |x|
+  Question.create!(
+    question: questions.sample,
+    generated_answers: answers,
+    correct_answer: answers.sample,
+    user_answer: answers.sample,
+    test: test2
+  )
+end
+
+puts "Created #{User.count} User, #{Test.count} Tests, and #{Question.count} Questions"
