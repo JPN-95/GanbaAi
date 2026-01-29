@@ -5,7 +5,13 @@
   <%= @test.title %>
   <%= @test.category %>
 
-  <%= @test.questions.each do |q| %>
+  <% if @test.complete? %>
+    Test complete
+  <% else %>
+    Test incomplete
+  <% end %>
+
+  <% @test.questions.each do |q| %>
     <div class="card">
       <%= render "questions/edit" %>
     </div>
