@@ -7,7 +7,7 @@
 
   <%= @test.questions.each do |q| %>
     <div class="card">
-    <p> The question: <%= q.question %> </p>
+    <p>The question: <%= q.question %> </p>
     <p>The options: <%= q.generated_answers %> </p>
     <p>The correct answer: <%= q.correct_answer %></p>
     <p>The user's answer: <%= q.user_answer %></p>
