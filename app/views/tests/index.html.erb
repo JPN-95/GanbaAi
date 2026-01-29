@@ -1,31 +1,32 @@
 <div class="container">
 
-  <div class="white_card my-5">
-    <p>Select a category to generate quizzes:</p>
+  <div class="my-5 bg-white">
+    <p>Select a category to generate a new test:</p>
     <div class="row row-cols-5 justify-content-center">
       <button class="btn btn-outline-primary m-1">Vocabulary</button>
       <button class="btn btn-outline-primary m-1">Grammar</button>
       <button class="btn btn-outline-primary m-1">Reading</button>
       <button class="btn btn-outline-primary m-1">Kanji</button>
     </div>
-    <div class="row row-cols-3 my-3 justify-content-between">
-      <button class="btn btn-outline-primary"> Generate Quiz </button>
-      <button class="btn btn-outline-primary"> Take Quiz </button>
+  </div>
+
+  <div class="bg-white">
+    <p>Your tests</p>
+
+    <div class="overflow-x-scroll mb-5 bg-white">
+      <% @tests.each do |test| %>
+        <%= link_to test_path(test) do %>
+          <% if test.complete? %>
+            <div class="d-inline-block p-3 border border-success border-2">
+          <% else %>
+            <div class="d-inline-block p-3 border border-2">
+          <% end %>
+            <p> <%= test.title %> </p>
+            <p><%= test.category %> </p>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-  </div>
-
-  <div>
-    <p>Previous results</p>
-  </div>
-  <div class="overflow-x-scroll mb-5">
-
-    <% @tests.each do |test| %>
-      <div class="d-inline-block p-3 border">
-        <p> <%= test.title %> </p>
-        <p><%= test.category %> </p>
-        <p> <%= link_to test.title, test_path(test) %> </p>
-      </div>
-    <% end %>
   </div>
 
   <div class="card">

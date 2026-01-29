@@ -1,14 +1,26 @@
 <div class="container">
 
-  <h1> Hello from Test Show </h1>
+  <h1> <%= @test.title %> </h1>
 
-  <%= @test.title %>
-  <%= @test.category %>
+  <h2> <%= @test.category %> </h2>
+
+  <%= link_to "Back to all tests", tests_path, class: "btn btn-primary"%>
 
   <% if @test.complete? %>
-    Test complete
+    <h3> Test complete </h3>
+    <% @test.questions.each do |q| %>
+      <% if q.user_answer = q.correct_answer%>
+        <div class="card my-3 border border-success border-3 p-2">
+      <% else %>
+        <div class="card my-3 border border-danger border-3 p-2">
+      <% end %>
+        <p> Question: <%= q.question %> </p>
+        <p> Your answer: <%= q.user_answer %> </p>
+        <p> Correct answer: <%= q.correct_answer %> </p>
+      </div>
+    <% end %>
   <% else %>
-    Test incomplete
+    <h3> Test incomplete </h3>
     <% @test.questions.each do |q| %>
       <div class="card">
         <%= render "questions/edit" %>
