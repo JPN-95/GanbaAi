@@ -9,11 +9,10 @@
     Test complete
   <% else %>
     Test incomplete
-  <% end %>
-
-  <% @test.questions.each do |q| %>
-    <div class="card">
-      <%= render "questions/edit" %>
-    </div>
+    <% @test.questions.each do |q| %>
+      <div class="card">
+        <%= render "questions/edit" %>
+      </div>
+    <% end %>
   <% end %>
 </div>
