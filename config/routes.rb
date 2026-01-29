@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resource :dashboard, only: [:show]
-  resources :tests, except: :destroy
+  resources :tests, except: [:edit, :update, :destroy]
 end
