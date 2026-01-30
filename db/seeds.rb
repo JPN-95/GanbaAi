@@ -8,42 +8,18 @@
 #     MovieGenre.find_or_create!_by!(name: genre_name)
 #   end
 puts "creating db:)"
+Question.destroy_all
+Test.destroy_all
+User.destroy_all
 
-User.create!( email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
+questions = ["lorum ipsum?", "how many provinces in canada", "whats your name?", "whats your fav color?"]
+answers = ["answer a", "answer b", "answer c", "answer d"]
 
-Test.create!( title: "cool first test", category:"grammar", user_id:1)
-Test.create!( title: "mid second test", category:"vocab", user_id:1)
+patrick = User.create!(email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
+katie = User.create!( email: "ru1eBr1tania1@gmail.co.uk", password:"crumpet", username:"uk_swag_tea")
 
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:1)
+test1 = Test.create!(title:"Vocab N5 Test", category: "Vocabulary", user:patrick)
+test2 = Test.create!( title: "Unfinished Grammar Test", category:"Grammar", user:patrick)
 
 Question.create!(
   question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
@@ -75,3 +51,24 @@ Question.create!(
   correct_answer:"Answer 2",
   user_answer:"",
   test_id:2)
+5.times do |x|
+  Question.create!(
+    question: questions.sample,
+    generated_answers: answers,
+    correct_answer: answers.sample,
+    user_answer: answers.sample,
+    test: test1
+  )
+end
+
+5.times do |x|
+  Question.create!(
+    question: questions.sample,
+    generated_answers: answers,
+    correct_answer: answers.sample,
+    user_answer: "",
+    test: test2
+  )
+end
+
+puts "Created #{User.count} User, #{Test.count} Tests, and #{Question.count} Questions"

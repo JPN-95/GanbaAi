@@ -1,4 +1,5 @@
 class TestsController < ApplicationController
+  chat = RubyLLM.chat
   before_action :set_test, only: [:show]
 
   def index
@@ -14,6 +15,7 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.new(test_params)
+
     if @test.save
       redirect_to test_path(@test)
     else
