@@ -36,7 +36,7 @@ end
     question: questions.sample,
     generated_answers: answers,
     correct_answer: answers.sample,
-    user_answer: [],
+    user_answer: "",
     test: test2
   )
 end
