@@ -21,36 +21,6 @@ katie = User.create!( email: "ru1eBr1tania1@gmail.co.uk", password:"crumpet", us
 test1 = Test.create!(title:"Vocab N5 Test", category: "Vocabulary", user:patrick)
 test2 = Test.create!( title: "Unfinished Grammar Test", category:"Grammar", user:patrick)
 
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"Answer 2",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
-Question.create!(
-  question: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-  generated_answers:["Dolor sit amet consectetur adipiscing elit quisque faucibus.", "Answer 2"],
-  correct_answer:"Answer 2",
-  user_answer:"",
-  test_id:2)
 5.times do |x|
   Question.create!(
     question: questions.sample,
