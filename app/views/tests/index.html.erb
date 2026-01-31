@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="white_card my-5">
     <p>Select a category to generate quizzes:</p>
     <div class="row row-cols-5 justify-content-center">
@@ -13,12 +12,10 @@
       <button class="btn btn-outline-primary"> Take Quiz </button>
     </div>
   </div>
-
   <div>
     <p>Previous results</p>
   </div>
   <div class="overflow-x-scroll mb-5">
-
     <% @tests.each do |test| %>
       <div class="d-inline-block p-3 border">
         <p> <%= test.title %> </p>
@@ -27,7 +24,6 @@
       </div>
     <% end %>
   </div>
-
   <div class="card">
     <%= link_to "New test", new_test_path, class: "btn btn-primary" %>
   </div>
