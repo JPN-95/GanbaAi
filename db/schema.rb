@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_27_111209) do
     t.string "question"
     t.string "correct_answer"
     t.string "generated_answers", default: [], array: true
-    t.string "user_answer", default: ""
+    t.string "user_answer"
     t.bigint "test_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
