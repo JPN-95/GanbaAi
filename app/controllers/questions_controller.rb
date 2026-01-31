@@ -5,7 +5,6 @@ class QuestionsController < ApplicationController
 def edit
 end
 
-
   def update
     if @question.update(question_params)
       redirect_to test_path(@test), notice: "Answer saved!"
