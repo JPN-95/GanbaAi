@@ -7,4 +7,11 @@ class Test < ApplicationRecord
   def complete?
     !questions.where(user_answer: "").exists?
   end
+
+  def score
+    correct_count = questions.where("user_answer = correct_answer").count
+    total_count = questions.count
+    return 0 if total_count == 0
+    (correct_count.to_f / total_count.to_f * 100).round(2)
+  end
 end
