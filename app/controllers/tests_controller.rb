@@ -21,7 +21,7 @@ class TestsController < ApplicationController
     #   PROMPT
     user_prompt = <<~PROMPT
       You are an expert academic examiner for the Japanese Language Proficiency Test.
-      Your task is to generate 5 high-quality unambiguous Vocabulary SENTENCE-COMPLETION questions for JLPT N3 relating to daily life for the exam.
+      Your task is to generate 5 high-quality unambiguous Vocabulary SENTENCE-COMPLETION questions for JLPT N4 relating to daily life for the exam.
       You must respond ONLY with a JSON object. No conversational text. The
       test should be N level appropriate. Each question must have enough
       context so that only one answer is logically correct. Wrong answers should
@@ -52,21 +52,18 @@ class TestsController < ApplicationController
     # response = RubyLLM.chat.with_instructions(system_prompt).ask(user_prompt)
     response = RubyLLM.chat.ask(user_prompt)
     raw_content = response.content
-    puts raw_content
     response_hash = JSON.parse(raw_content, symbolize_names: true)
-    puts response_hash
-    puts response_hash[:title]
-    response_hash[:questions].each do |q|
-      puts q[:question]
-      puts q[:generated_answers]
-    end
-  #   @test = Test.new(test_params)
 
-  #   if @test.save
-  #     redirect_to test_path(@test)
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
+    @test = Test.new(title: response_hash[:title], category: params[:category], user: current_user)
+    response_hash[:questions].each do |q|
+      Question.create(question: q[:question], generated_answers: q[generated_answers], correct_answer: q[correct_answer], user_answer: "", test: @test)
+    end
+
+    if @test.save
+      redirect_to test_path(@test)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
