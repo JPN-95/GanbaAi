@@ -1,0 +1,166 @@
+<div class="container">
+  <h1>Dashboard</h1>
+  <h2>Welcome <%= current_user.username %></h2>
+
+</div>
+
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">My study history</h2>
+</div>
+
+
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-inner">
+
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">My Previous Quizzes</h2>
+
+  <div id="carouselUpcomingQuizzes" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 1</div>
+              <div class="card-body">
+                <h5 class="card-title">Quiz Kanji</h5>
+                <p class="card-text">Kanji</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 2</div>
+              <div class="card-body">
+                <h5 class="card-title">Grammar</h5>
+                <p class="card-text">Text.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 3</div>
+              <div class="card-body">
+                <h5 class="card-title">Listening</h5>
+                <p class="card-text">Text</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 4</div>
+              <div class="card-body">
+                <h5 class="card-title">Vocabulary</h5>
+                <p class="card-text">New.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 4</div>
+              <div class="card-body">
+                <h5 class="card-title">Vocabulary</h5>
+                <p class="card-text">New.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 4</div>
+              <div class="card-body">
+                <h5 class="card-title">Vocabulary</h5>
+                <p class="card-text">New.</p>
+              </div>
+            </div>
+          </div>
+
+          </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselUpcomingQuizzes" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselUpcomingQuizzes" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">Words To Study</h2>
+
+  <div id="carouselWordsToStudy" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 1</div>
+              <div class="card-body">
+                <h5 class="card-title">Quiz Kanji</h5>
+                <p class="card-text">Kanji.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 2</div>
+              <div class="card-body">
+                <h5 class="card-title">Grammar</h5>
+                <p class="card-text">New grammar.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 3</div>
+              <div class="card-body">
+                <h5 class="card-title">Something</h5>
+                <p class="card-text">New something.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+              <div class="card-header">Header 4</div>
+              <div class="card-body">
+                <h5 class="card-title">Vocabulary</h5>
+                <p class="card-text">New words.</p>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselWordsToStudy" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselWordsToStudy" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
