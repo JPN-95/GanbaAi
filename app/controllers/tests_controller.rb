@@ -1,5 +1,6 @@
+require 'json'
 class TestsController < ApplicationController
-  chat = RubyLLM.chat
+
   before_action :set_test, only: [:show]
 
   def index
@@ -14,13 +15,46 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.new(test_params)
+    # category = params[:category]
+    # system_prompt = <<~PROMPT
+    #   You are an expert academic examiner for the Japanese Language Proficiency Test.
+    #   Your task is to generate high-quality multiple-choice questions for the exam.
+    #   You must respond ONLY with a JSON object. No conversational text. The
+    #   test should be N level appropriate. The questions should only be about the given category.
+    # PROMPT
+    # user_prompt = <<~PROMPT
+    #   Create a test about "#{category} for the Japanese Language Proficiency Test [JLPT]".
+    #   Include 5 questions.
+    #   Each question will have a 4 generated_answers and 1 correct_answer among them.
+    #   Format output will be as follows:
+    #   {
+    #     "title": "A simple title accurately joining the input title:#{params[:title]} and input category: #{category}",
+    #     "questions": [
+    #       {
+    #         "question": Question text here?",
+    #         "generated_answers":["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
+    #         "correct_answer": "The exact string from the array which is correct"
+    #       }
+    #     ]
+    #   }
+    # PROMPT
 
-    if @test.save
-      redirect_to test_path(@test)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    # response = RubyLLM.chat.with_instructions(system_prompt).ask(user_prompt)
+    # raw_content = response.content
+    # response_hash = JSON.parse(raw_content, symbolize_names: true)
+    # puts response_hash
+    # puts response_hash[:title]
+    # response_hash[:questions].each do |q|
+    #   puts q[:question]
+    #   puts q[:generated_answers]
+    # end
+  #   @test = Test.new(test_params)
+
+  #   if @test.save
+  #     redirect_to test_path(@test)
+  #   else
+  #     render :new, status: :unprocessable_entity
+  #   end
   end
 
   private
