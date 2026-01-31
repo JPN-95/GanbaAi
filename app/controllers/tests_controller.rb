@@ -54,12 +54,13 @@ class TestsController < ApplicationController
     raw_content = response.content
     response_hash = JSON.parse(raw_content, symbolize_names: true)
 
-    @test = Test.new(title: response_hash[:title], category: params[:category], user: current_user)
-    response_hash[:questions].each do |q|
-      Question.create(question: q[:question], generated_answers: q[generated_answers], correct_answer: q[correct_answer], user_answer: "", test: @test)
-    end
+    @test = Test.new(title: response_hash[:title], category: params[:category], user_id: current_user.id)
+
 
     if @test.save
+    response_hash[:questions].each do |q|
+      Question.create(question: q[:question], generated_answers: q[:generated_answers], correct_answer: q[:correct_answer], user_answer: "", test: @test)
+    end
       redirect_to test_path(@test)
     else
       render :new, status: :unprocessable_entity
