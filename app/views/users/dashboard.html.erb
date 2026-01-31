@@ -1,29 +1,11 @@
 <div class="container">
   <h1>Dashboard</h1>
   <h2>Welcome <%= current_user.username %></h2>
-  <% @tests.each do |test| %>
-    <% test.questions.each do |question| %>
-      <p> <%= test.category %></p>
-      <p> <%= question.question %></p>
-      <% if question.user_answer.to_s == question.correct_answer.to_s %>
-        <p><%= question.correct_answer %></p>
-      <% else %>
-        <p><%= question.user_answer + "wrong answer#{@counter}"%></p>
-    <% end %>
-    <% @counter = @counter+1 %>
-    <% end %>
-  <% end %>
-<%= @questions.count %>
+
 </div>
 
 <div class="dashboard_cards container mt-4">
   <h2 class="mb-4">My study history</h2>
-
-<div class="calendar-container-fixed mx-auto" style="width: 200px; height: 190px;">
-    <%= month_calendar do |date| %>
-      <%= date.day %>
-    <% end %>
-  </div>
 </div>
 
 
