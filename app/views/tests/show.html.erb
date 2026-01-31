@@ -1,15 +1,40 @@
 <div class="container">
-  <h1> Hello from Test Show </h1>
-  <%= @test.title %>
-  <%= @test.category %>
-  <% @test.questions.each do |q| %>
-    <div class="card">
-      <p>The question: <%= q.question %></p>
-      <p>The options: <%= q.generated_answers %></p>
-      <p>The correct answer: <%= q.correct_answer %></p>
-      <p>The user's answer: <%= q.user_answer %></p>
-      <%= link_to "Answer this Question", edit_test_question_path(@test, q) %>
-      <hr>
-    </div>
+
+  <h1> <%= @test.title %> </h1>
+
+  <h2> <%= @test.category %> </h2>
+
+  <%= link_to "Back to all tests", tests_path, class: "btn btn-primary"%>
+
+  <% if @test.complete? %>
+    <h3> Test complete </h3>
+    <% @test.questions.each do |q| %>
+      <% if q.correct?%>
+        <div class="card my-3 border border-success border-3 p-2">
+      <% else %>
+        <div class="card my-3 border border-danger border-3 p-2">
+      <% end %>
+        <p class="text-body"> Question: <%= q.question %> </p>
+        <div class="d-flex flex-row p-2 mb-1">
+          <div class="p-2 flex-fit">
+            <p class="text-body"> Correct answer: <%= q.correct_answer %> </p>
+          </div>
+          <div class="p-2 flex-fit">
+            <p class="text-body"> Your answer: <%= q.user_answer %> </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h3> Test incomplete </h3>
+    <% @test.questions.each do |q| %>
+        <%= render "questions/form", test: @test, question: q %>
+    <% end %>
   <% end %>
-</div>
+</div>5
+
+<style>
+  p {
+    color: black;
+  }
+</style>
