@@ -111,7 +111,7 @@ Question.create!(question: "自分で旅行を計画するのは楽しいです�
 Question.create!(question: "この学生は毎日地下鉄で大学に通っています。||地下鉄",
   generated_answers:["A. じげてつ", "B. じがてつ", "C. ちけてつ", "D. ちかてつ"],
   correct_answer: "D. ちかてつ", user_answer: "", test: n4kanji)
-Question.create!(question: "この学生は毎日地下鉄で大学に通っています。",
+Question.create!(question: "この学生は毎日地下鉄で大学に通っています。||大学",
   generated_answers:["A. たいがく", "B. だいかく", "C. たいかく", "D. だいがく"],
   correct_answer: "D. だいがく", user_answer: "", test: n4kanji)
 puts "N4 Kanji Test complete and unanswered!"
@@ -308,8 +308,7 @@ Question.create!(question: "英語が話せなくて道を___聞けない。",
   correct_answer: "C. 聞こうにも", user_answer: "", test: n1grammar)
 puts "N1 Grammar Test complete and unanswered!"
 
-
-
+puts "Created #{User.count} User, #{Test.count} Tests, and #{Question.count} Questions"
 
 # Question.create!(question: "___",
 #   generated_answers:["A. ", "B. ", "C. ", "D. "],
@@ -338,5 +337,3 @@ puts "N1 Grammar Test complete and unanswered!"
 #     test: test2
 #   )
 # end
-
-puts "Created #{User.count} User, #{Test.count} Tests, and #{Question.count} Questions"
