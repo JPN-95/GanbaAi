@@ -16,20 +16,24 @@ class TestsController < ApplicationController
 
   def create
     category = params[:category]
-    system_prompt = <<~PROMPT
+    # system_prompt = <<~PROMPT
+
+    #   PROMPT
+    user_prompt = <<~PROMPT
       You are an expert academic examiner for the Japanese Language Proficiency Test.
-      Your task is to generate high-quality unambiguous SENTENCE-COMPLETION questions for the exam.
+      Your task is to generate 5 high-quality unambiguous Vocabulary SENTENCE-COMPLETION questions for JLPT N3 relating to daily life for the exam.
       You must respond ONLY with a JSON object. No conversational text. The
-      test should be N level appropriate. Crucially, each question must have enough
-      context so that only one answer is linguistically correct. Distractors should
+      test should be N level appropriate. Each question must have enough
+      context so that only one answer is logically correct. Wrong answers should
       be related to the topic but clearly wrong in the specific grammatical or logical context of the sentence.
       The questions should only be about the given category.
-      Use only parenthesis and brackets, not 「」。. Vocabulary test's generated_answers should all be unique words and not
+      Use only parenthesis and brackets, not 「」。''. Vocabulary test's generated_answers should all be unique words and not
       conjugations of the same word.
-    PROMPT
-    user_prompt = <<~PROMPT
-      Create a test about JLPT N5 Vocabulary relating to office language for the Japanese Language Proficiency Test [JLPT]".
-      Include 5 questions.
+      N5: One is able to read and understand typical expressions and sentences written in hiragana, katakana, and basic kanji.
+      N4: One is able to read and understand passages on familiar daily topics written in basic vocabulary and kanji.
+      N3: One is able to read and understand written materials with specific contents concerning everyday topics. One is also able to grasp summary information such as newspaper headlines. In addition, one is also able to read slightly difficult writings encountered in everyday situations and understand the main points of the content if some alternative phrases are available to aid one’s understanding.
+      N2: One is able to read materials written clearly on a variety of topics, such as articles and commentaries in newspapers and magazines as well as simple critiques, and comprehend their contents. One is also able to read written materials on general topics and follow their narratives as well as understand the intent of the writers.
+      N1: One is able to read writings with logical complexity and/or abstract writings on a variety of topics, such as newspaper editorials and critiques, and comprehend both their structures and contents. One is also able to read written materials with profound contents on various topics and follow their narratives as well as understand the intent of the writers comprehensively.
       Each question will have a 4 generated_answers and 1 correct_answer among them. Ensure that 3 of the options are
       unmistakably incorrect based on the sentence's context. There should only be one explicit answer.
       Format output will be as follows:
@@ -45,8 +49,10 @@ class TestsController < ApplicationController
       }
     PROMPT
 
-    response = RubyLLM.chat.with_instructions(system_prompt).ask(user_prompt)
+    # response = RubyLLM.chat.with_instructions(system_prompt).ask(user_prompt)
+    response = RubyLLM.chat.ask(user_prompt)
     raw_content = response.content
+    puts raw_content
     response_hash = JSON.parse(raw_content, symbolize_names: true)
     puts response_hash
     puts response_hash[:title]
