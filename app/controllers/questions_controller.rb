@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_test
+  before_action :set_test, only: [:edit, :update]
   before_action :set_question, only: [:edit, :update]
 
 def edit
