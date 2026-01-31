@@ -1,0 +1,26 @@
+<div class="question-container">
+  <h2><%= question.question %></h2>
+  <%= simple_form_for [test, question] do |f| %>
+    <%= f.input :user_answer,
+                collection: question.generated_answers,
+                as: :radio_buttons,
+                label: "Select the correct option:" %>
+    <%= f.submit "Submit Answer", class: "submit-button" %>
+  <% end %>
+</div>
+<style>
+  .question-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .submit-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+</style>
