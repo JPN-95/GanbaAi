@@ -67,8 +67,6 @@ Question.create!(question: "あの人たちはどこに行っているん___",
   correct_answer: "A. だろう", user_answer: "", test: n5grammar)
 puts "N5 Grammar Test complete and unanswered!"
 
-# No N5 Reading test yet!
-
 puts "Making a N5 Reading Test"
 n5reading = Test.create!(title:"N5 Reading Test", category: "Reading", user: testtaro)
 Question.create!(context: "アパートの皆さんへ
