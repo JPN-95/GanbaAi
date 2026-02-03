@@ -1,12 +1,3 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or create!d alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create!_by!(name: genre_name)
-#   end
 puts "creating db:)"
 Question.destroy_all
 Test.destroy_all
@@ -77,6 +68,15 @@ Question.create!(question: "あの人たちはどこに行っているん___",
 puts "N5 Grammar Test complete and unanswered!"
 
 # No N5 Reading test yet!
+
+puts "Making a N5 Reading Test"
+n5reading = Test.create!(title:"N5 Reading Test", category: "Reading", user: testtaro)
+Question.create!(context: "アパートの皆さんへ
+  来週の月曜日と火曜日の午前１０時から午後５時までエレベーターを使わないでください。階段を使ってください。",
+  question: "アパートの人は、来週の月曜日と火曜日には、外に出る時、どうしますか。",
+  generated_answers:["A. 来週の月曜日の午前１１時には、階段を使います。", "B. 来週の月曜日の午後３時には、エレベーターを使います。", "C. 来週の火曜日の午前１１時には、エレベーターを使います。", "D. 来週の火曜日の午後３時には、階段を使いません。"],
+  correct_answer: "A. 来週の月曜日の午前１１時には、階段を使います。", user_answer: "", test: n5reading)
+puts "N5 Reading Test complete and unanswered!"
 
 puts "Making a N4 Vocabulary Test"
 n4vocabulary = Test.create!(title: "N4 Vocabulary Test", category: "Vocabulary", user: testtaro)
@@ -158,19 +158,19 @@ puts "N3 Vocabulary Test complete and unanswered!"
 
 puts "Making a N3 Kanji Test"
 n3kanji = Test.create!(title: "N3 Kanji Test", category: "Kanji", user: testtaro)
-Question.create!(question: "しばらく一緒に仕事をして、彼なら物事を間違いなく進めてくれると信用した。||物事",
+Question.create!(context: "しばらく一緒に仕事をして、彼なら物事を間違いなく進めてくれると信用した。", question: "物事",
   generated_answers:["A. ぶつじ", "B. ぶつごと", "C. ものじ", "D. ものごと"],
   correct_answer: "D. ものごと", user_answer: "", test: n3kanji)
-Question.create!(question: "このように複雑な外遊を計画するためには、非常にゆうのうな人々からなるチームが欠かせない。||ゆうのう",
+Question.create!(context: "このように複雑な外遊を計画するためには、非常にゆうのうな人々からなるチームが欠かせない。", question: "ゆうのう",
   generated_answers:["A. 有態", "B. 有能", "C. 有熊", "D. 有脂"],
   correct_answer: "B. 有能", user_answer: "", test: n3kanji)
-Question.create!(question: "私は「こうしたら絶対に良くなる」と分かっていることを見過ごせない性格ですが、会社に勤めていたのでは実行に移せないと思い、２３歳の時に独立したのです。||実行",
+Question.create!(context: "私は「こうしたら絶対に良くなる」と分かっていることを見過ごせない性格ですが、会社に勤めていたのでは実行に移せないと思い、２３歳の時に独立したのです。", question:"実行",
   generated_answers:["A. じっこ", "B. じっこう", "C. じつぎょ", "D. じつぎょう"],
   correct_answer: "B. じっこう", user_answer: "", test: n3kanji)
-Question.create!(question: "中国の沿海部の都市は次第に世界経済の原動力にもなりつつあり、過去３０年間に農村から４億人を吸収した。そうした年のエネルギーじゅようは３０年までに２倍に膨れ上がる見通しだ。||じゅよう",
+Question.create!(context: "中国の沿海部の都市は次第に世界経済の原動力にもなりつつあり、過去３０年間に農村から４億人を吸収した。そうした年のエネルギーじゅようは３０年までに２倍に膨れ上がる見通しだ。", question:"じゅよう",
   generated_answers:["A. 需腰", "B. 儒腰", "C. 儒要", "D. 需要"],
   correct_answer: "D. 需要", user_answer: "", test: n3kanji)
-Question.create!(question: "強調する方法は、「声を大きくする」ことだけではありません。例えば。ゆっくり読んだり、前後に大きな間を取ったりして「強調」することもできます。||強調",
+Question.create!(context: "強調する方法は、「声を大きくする」ことだけではありません。例えば。ゆっくり読んだり、前後に大きな間を取ったりして「強調」することもできます。", question: "強調",
   generated_answers:["A. ごうちょう", "B. こうちょう", "C. きょちょう", "D. きょうちょう"],
   correct_answer: "D. きょうちょう", user_answer: "", test: n3kanji)
 puts "N3 Kanji Test complete and unanswered!"
@@ -215,19 +215,19 @@ puts "N2 Vocabulary Test complete and unanswered!"
 
 puts "Making a N2 Kanji Test"
 n2kanji = Test.create!(title: "N2 Kanji Test", category: "Kanji", user: testtaro)
-Question.create!(question: "語義だけでなく、内容についてさまざまな角度から調べ、理解することが必要です。||角度",
+Question.create!(context: "語義だけでなく、内容についてさまざまな角度から調べ、理解することが必要です。", question: "角度",
   generated_answers:["A. かくど", "B. かくたび", "C. すみど", "D. すみたび"],
   correct_answer: "A. かくど", user_answer: "", test: n2kanji)
-Question.create!(question: "大原さんは、検診で「問題なし」とされた半年後に体調を壊し、病院でがんとしんだんされ１年で亡くなりました。||しんだん",
+Question.create!(context: "大原さんは、検診で「問題なし」とされた半年後に体調を壊し、病院でがんとしんだんされ１年で亡くなりました。", question:"しんだん",
   generated_answers:["A. 診断", "B. 珍断", "C. 修断", "D. 惨断"],
   correct_answer: "A. 診断", user_answer: "", test: n2kanji)
-Question.create!(question: "あるキーワードで検索すると、古い記事ばかりヒットしてしまい、有益な情報が得られないということも少なくない。そんな場合は、期間を指定して検索してみよう。||指定",
+Question.create!(context: "あるキーワードで検索すると、古い記事ばかりヒットしてしまい、有益な情報が得られないということも少なくない。そんな場合は、期間を指定して検索してみよう。", question:"指定",
   generated_answers:["A. じてい", "B. じってい", "C. してい", "D. しってい"],
   correct_answer: "C. してい", user_answer: "", test: n2kanji)
-Question.create!(question: "遺伝子レベルでがんの可能性を発見して、経過観察も含めた治療を開始してとうけいをとれば、１０年生存率も飛躍的に上がります。その治療に意味があるかは言うまでもありません。||とうけい",
+Question.create!(context: "遺伝子レベルでがんの可能性を発見して、経過観察も含めた治療を開始してとうけいをとれば、１０年生存率も飛躍的に上がります。その治療に意味があるかは言うまでもありません。", question:"とうけい",
   generated_answers:["A. 結計", "B. 絡計", "C. 絞計", "D. 統計"],
   correct_answer: "D. 統計", user_answer: "", test: n2kanji)
-Question.create!(question: "天気予報によれば、来週の日本列島は、全国的に晴天が続くそうです。||列島",
+Question.create!(context: "天気予報によれば、来週の日本列島は、全国的に晴天が続くそうです。", question:"列島",
   generated_answers:["A. れいしま", "B. れっとう", "C. れいとう", "D. れっしま"],
   correct_answer: "B. れっとう", user_answer: "", test: n2kanji)
 puts "N2 Kanji Test complete and unanswered!"
@@ -272,19 +272,19 @@ puts "N1 Vocabulary Test complete and unanswered!"
 
 puts "Making a N1 Kanji Test"
 n1kanji = Test.create!(title: "N1 Kanji Test", category: "Kanji", user: testtaro)
-Question.create!(question: "私は発作性頭位眩暈症という病気の症状に襲われました。|| 発作",
+Question.create!(context:"私は発作性頭位眩暈症という病気の症状に襲われました。", question:"発作",
   generated_answers:["A. はっさ", "B. ほっさ", "C. はっさく", "D. ほっさく"],
   correct_answer: "B. ほっさ", user_answer: "", test: n1kanji)
-Question.create!(question: "結婚問題にはもう片がついたが、れんあいのほうはそうはいかなかった。||れんあい",
+Question.create!(context: "結婚問題にはもう片がついたが、れんあいのほうはそうはいかなかった。", question: "れんあい",
   generated_answers:["A. 恋窓", "B. 変愛", "C. 恋愛", "D. 変窓"],
   correct_answer: "C. 恋愛", user_answer: "", test: n1kanji)
-Question.create!(question: "会社が成長する勢いや、事業をとりまく環境などを詳しく分析することで、大幅な値上がりをする株を探し当てるのは、株の大きな楽しみの一つです。||大幅",
+Question.create!(context: "会社が成長する勢いや、事業をとりまく環境などを詳しく分析することで、大幅な値上がりをする株を探し当てるのは、株の大きな楽しみの一つです。", question:"大幅",
   generated_answers:["A. だいふく", "B. だいはば", "C. おおふく", "D. おおはば"],
   correct_answer: "D. おおはば", user_answer: "", test: n1kanji)
-Question.create!(question: "市議会では身近なリサイクル運動を推進しようという提案を採択した。||推進",
+Question.create!(context: "市議会では身近なリサイクル運動を推進しようという提案を採択した。", question:"推進",
   generated_answers:["A. しんしん", "B. せんしん", "C. しょうしん", "D. すいしん"],
   correct_answer: "D. すいしん", user_answer: "", test: n1kanji)
-Question.create!(question: "にんしんだから休まなきゃいけないのに、いろいろ予定を詰め込んでいます。||にんしん",
+Question.create!(context: "にんしんだから休まなきゃいけないのに、いろいろ予定を詰め込んでいます。", question:"にんしん",
   generated_answers:["A. 妊辱", "B. 妊辰", "C. 妊娠", "D. 妊振"],
   correct_answer: "C. 妊娠", user_answer: "", test: n1kanji)
 puts "N1 Kanji Test complete and unanswered!"

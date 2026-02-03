@@ -1,5 +1,6 @@
 <div class="question-container">
-  <h2><%= question.question %></h2>
+  <p> <%= question.context %> </p>
+  <h5><%= question.question %></h5>
   <%= simple_form_for [test, question] do |f| %>
     <%= f.input :user_answer,
                 collection: question.generated_answers,
