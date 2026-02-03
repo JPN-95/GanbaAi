@@ -1,11 +1,11 @@
 <div class="container">
   <h1>Dashboard</h1>
   <h2>Welcome <%= current_user.username %></h2>
-<%= link_to "All Tests", tests_path, class: "btn btn-primary"%>
 </div>
 
 <div class="dashboard_cards container mt-4">
-  <h2 class="mb-4">My study history</h2>
+  <h2 class="mb-4">My study</h2>
+  <%= link_to "All Tests", tests_path, class: "btn btn-primary"%>
 </div>
 
 <div id="carouselExample" class="carousel slide" data-bs-ride="false">
@@ -23,15 +23,17 @@
               <div class="row">
 
                 <% group.each do |test| %>
-                  <div class="col-md-4">
-                    <div class="card text-bg-primary mb-3">
-                      <div class="card-header"><%= test&.category&.capitalize %></div>
-                      <div class="card-body">
-                        <h5 class="card-title text-truncate"><%= test.title %></h5>
-                        <p class="card-text">Questions: <%= test.questions.count %></p>
+                  <% if test.category == "Vocabulary" %>
+                    <div class="col-md-4">
+                      <div class="card text-bg-primary mb-3">
+                        <div class="card-header"><%= test.title %></div>
+                        <div class="card-body">
+                          <h5 class="card-title text-truncate"><%= "Score" %></h5>
+                          <p class="card-text">Questions: <%= test.questions.count %></p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -68,15 +70,17 @@
               <div class="row">
 
                 <% group.each do |test| %>
-                  <div class="col-md-4">
-                    <div class="card text-bg-primary mb-3">
-                      <div class="card-header"><%= test&.category&.capitalize %></div>
-                      <div class="card-body">
-                        <h5 class="card-title text-truncate"><%= test.title %></h5>
-                        <p class="card-text">Questions: <%= test.questions.count %></p>
+                  <% if test.category == "Vocabulary" %>
+                    <div class="col-md-4">
+                      <div class="card text-bg-primary mb-3">
+                        <div class="card-header"><%= test.title %></div>
+                        <div class="card-body">
+                          <h5 class="card-title text-truncate"><%= "Score" %></h5>
+                          <p class="card-text">Questions: <%= test.questions.count %></p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -146,7 +150,7 @@
   <div class="carousel-inner">
 
     <div class="dashboard_cards container mt-4">
-      <h2 class="mb-4">Grammar</h2>
+      <h2 class="mb-4">Reading</h2>
 
       <div id="reading" class="carousel slide" data-bs-ride="false">
         <div class="carousel-inner">
