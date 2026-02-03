@@ -19,9 +19,7 @@ patrick = User.create!(email: "patnew1@gmail.co", password:"bigsecret", username
 katie = User.create!( email: "ru1eBr1tania1@gmail.co.uk", password:"crumpet", username:"uk_swag_tea")
 
 test1 = Test.create!(title:"Vocab N5 Test", category: "Vocabulary", user:patrick)
-test2 = Test.create!(title: "Unfinished Grammar Test", category:"Grammar", user:patrick)
-test3 = Test.create!(title: "Vocab Test", category:"Vocabulary", user:patrick)
-test5 = Test.create!(title: "Kanji Test", category:"Kanji", user:patrick)
+test2 = Test.create!( title: "Unfinished Grammar Test", category:"Grammar", user:patrick)
 
 5.times do |x|
   Question.create!(
