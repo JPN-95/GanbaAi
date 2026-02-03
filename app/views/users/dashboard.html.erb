@@ -1,177 +1,145 @@
 <div class="container">
   <h1>Dashboard</h1>
   <h2>Welcome <%= current_user.username %></h2>
-  <%= link_to "All Tests", tests_path, class: "btn btn-primary"%>
 </div>
-<<div class="dashboard_cards container mt-4">
-  <h2 class="mb-4">My Study Stats</h2>
-  <div class="row mb-5">
-    <% ['vocabulary', 'kanji', 'grammar', 'reading'].each do |category| %>
-      <div class="col-md-3">
-        <div class="card shadow-sm border-0 text-center">
-          <div class="card-body">
-            <h6 class="text-muted text-uppercase small"><%= category %></h6>
-            <h2 class="display-6 fw-bold mb-0">
-              <%= @averages[category] %>%
-            </h2>
-            <div class="progress mt-2" style="height: 5px;">
-              <div class="progress-bar bg-success" role="progressbar" style="width: <%= @averages[category] %>%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <h2 class="mb-4">Detailed History</h2>
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">My study history</h2>
 </div>
-<div class="carousel-inner">
-  <div class="dashboard_cards container mt-4">
-    <h2 class="mb-4">Vocabulary</h2>
-    <div id="vocabulary" class="carousel slide" data-bs-ride="false">
-      <div class="carousel-inner">
-        <% @tests.in_groups_of(3, false).each_with_index do |group, index| %>
-          <div class="carousel-item <%= 'active' if index == 0 %>">
-            <div class="row">
-              <% group.each do |test| %>
-                <div class="col-md-4">
-                  <div class="card text-bg-primary mb-3">
-                    <div class="card-header"><%= test&.category&.capitalize %></div>
-                    <div class="card-body">
-                      <h5 class="card-title text-truncate"><%= test.title %></h5>
-                      <p class="card-text">Questions: <%= test.questions.count %></p>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#vocabulary" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#vocabulary" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  </div>
-  <div id="carouselExample" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <div class="dashboard_cards container mt-4">
-        <h2 class="mb-4">Kanji</h2>
-        <div id="kanji" class="carousel slide" data-bs-ride="false">
-          <div class="carousel-inner">
-            <% @tests.in_groups_of(3, false).each_with_index do |group, index| %>
-              <div class="carousel-item <%= 'active' if index == 0 %>">
-                <div class="row">
-                  <% group.each do |test| %>
-                    <div class="col-md-4">
-                      <div class="card text-bg-primary mb-3">
-                        <div class="card-header"><%= test&.category&.capitalize %></div>
-                        <div class="card-body">
-                          <h5 class="card-title text-truncate"><%= test.title %></h5>
-                          <p class="card-text">Questions: <%= test.questions.count %></p>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#grammar" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#grammar" data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#kanji" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#kanji" data-bs-slide="next">
-            <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
-      <div id="carouselExample" class="carousel slide" data-bs-ride="false">
+<div id="carouselExample" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-inner">
+    <div class="dashboard_cards container mt-4">
+      <h2 class="mb-4">My Previous Quizzes</h2>
+      <div id="carouselUpcomingQuizzes" class="carousel slide" data-bs-ride="false">
         <div class="carousel-inner">
-          <div class="dashboard_cards container mt-4">
-            <h2 class="mb-4">Grammar</h2>
-            <div id="grammar" class="carousel slide" data-bs-ride="false">
-              <div class="carousel-inner">
-                <% @tests.in_groups_of(3, false).each_with_index do |group, index| %>
-                  <div class="carousel-item <%= 'active' if index == 0 %>">
-                    <div class="row">
-                      <% group.each do |test| %>
-                        <div class="col-md-4">
-                          <div class="card text-bg-primary mb-3">
-                            <div class="card-header"><%= test&.category&.capitalize %></div>
-                            <div class="card-body">
-                              <h5 class="card-title text-truncate"><%= test.title %></h5>
-                              <p class="card-text">Questions: <%= test.questions.count %></p>
-                            </div>
-                          </div>
-                          <button class="carousel-control-prev" type="button" data-bs-target="#reading" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="#reading" data-bs-slide="next">
-                            <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                          </button>
-                        </div>
-                      <% end %>
-                    </div>
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 1</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Quiz Kanji</h5>
+                    <p class="card-text">Kanji</p>
                   </div>
-                <% end %>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#grammar" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#grammar" data-bs-slide="next">
-                <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-          <div id="carouselExample" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-inner">
-              <div class="dashboard_cards container mt-4">
-                <h2 class="mb-4">Grammar</h2>
-                <div id="reading" class="carousel slide" data-bs-ride="false">
-                  <div class="carousel-inner">
-                    <% @tests.in_groups_of(3, false).each_with_index do |group, index| %>
-                      <div class="carousel-item <%= 'active' if index == 0 %>">
-                        <div class="row">
-                          <% group.each do |test| %>
-                            <div class="col-md-4">
-                              <div class="card text-bg-primary mb-3">
-                                <div class="card-header"><%= test&.category&.capitalize %></div>
-                                <div class="card-body">
-                                  <h5 class="card-title text-truncate"><%= test.title %></h5>
-                                  <p class="card-text">Questions: <%= test.questions.count %></p>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#reading" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#reading" data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
                 </div>
               </div>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 2</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Grammar</h5>
+                    <p class="card-text">Text.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 3</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Listening</h5>
+                    <p class="card-text">Text</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 4</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Vocabulary</h5>
+                    <p class="card-text">New.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 4</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Vocabulary</h5>
+                    <p class="card-text">New.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 4</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Vocabulary</h5>
+                    <p class="card-text">New.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselUpcomingQuizzes" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselUpcomingQuizzes" data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="dashboard_cards container mt-4">
+      <h2 class="mb-4">Words To Study</h2>
+      <div id="carouselWordsToStudy" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 1</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Quiz Kanji</h5>
+                    <p class="card-text">Kanji.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 2</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Grammar</h5>
+                    <p class="card-text">New grammar.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 3</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Something</h5>
+                    <p class="card-text">New something.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">Header 4</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Vocabulary</h5>
+                    <p class="card-text">New words.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselWordsToStudy" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselWordsToStudy" data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
