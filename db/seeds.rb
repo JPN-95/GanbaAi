@@ -76,7 +76,31 @@ Question.create!(context: "アパートの皆さんへ
   question: "アパートの人は、来週の月曜日と火曜日には、外に出る時、どうしますか。",
   generated_answers:["A. 来週の月曜日の午前１１時には、階段を使います。", "B. 来週の月曜日の午後３時には、エレベーターを使います。", "C. 来週の火曜日の午前１１時には、エレベーターを使います。", "D. 来週の火曜日の午後３時には、階段を使いません。"],
   correct_answer: "A. 来週の月曜日の午前１１時には、階段を使います。", user_answer: "", test: n5reading)
+Question.create!(context: "リン「むらたさん、ちょっといいですか。」
+  むらた「はい、なんですか。」
+  リン「明日病院へ行きますから、じゅぎょうに出ません。明日の夜電話しますから、宿題をおしえてください。」
+  むらた「はい、わかりました。」",
+  question: "ただしいものはどれですか。",
+  generated_answers: ["A. むらたさんはきょうしゅくだいをおしえます。", "B. りんさんはきょうじゅぎょうを休みます。", "C. むらたさんはあしたびょういんへ行きます。", "D. りんさんはむらたさんに電話します。"],
+  correct_answer: "D. りんさんはむらたさんに電話します。", user_answer: "", test: n5reading)
+Question.create!(context: "土よう日に会社の人と山へあそびに行きました。２時間あるいて山の上につきました。そこでひるごはんを食べて１時間休みました。ちょっとつかれましたが、たのしかったです。山で食べたごはんはとてもおいしかったです。また行きたいです。",
+  question: "ただしいものはどれですか。",
+  generated_answers: ["A. 山の上まで２時間あるきました。", "B. ひるごはんをつくってつかれました。", "C. ２時間休んでひるごはんを食べました。", "D. つかれたからもう山へ行きたくないです。"],
+  correct_answer: "A. 山の上まで２時間あるきました。", user_answer: "", test: n5reading)
+Question.create!(context: "わたしはきょねんの１０月に日本へ来ました。今、とうきょうのアパートにひとりですんでいます。へやはひろいですが、駅からとおいからべんりじゃありません。もっと駅にちかいへやにすみたいです。でも、駅にちかいへやは高いです。",
+  question: "ただしいものはどれですか。",
+  generated_answers: ["A. わたしのへやは駅からとおいですが、ひろいです。", "B. わたしのへやは駅にちかいですが、少し高いです。", "C. わたしのへやは駅にちかいですが、ひとくありません。", "D. わたしのへやは駅から少しとおいですが、べんりです。"],
+  correct_answer: "A. わたしのへやは駅からとおいですが、ひろいです。", user_answer: "", test: n5reading)
+Question.create!(context: "ａ「すみません、こうばんはどこですか。」
+  ｂ「こうばんですか。そこにはしがありますね。そのはしをわたってまっすぐ行ってください。左側にありますよ。」
+  ａ「そうですか。ここからどれぐらいかかりますか。」
+  ｂ「そうですね。５分ぐらいでしょう。」",
+  question: "『しつもん』 ただしいものはどれですか。",
+  generated_answers: ["A. はしはこうばんの左にあります。", "B. こうばんははしのよこにあります。", "C. こうばんははしのむこうにあります。", "D. はしはここから５分ぐらいかかります。"],
+  correct_answer: "C. こうばんははしのむこうにあります。", user_answer: "", test: n5reading)
 puts "N5 Reading Test complete and unanswered!"
+
+# ---------------------------N5 ^----------------------------------------------------
 
 puts "Making a N4 Vocabulary Test"
 n4vocabulary = Test.create!(title: "N4 Vocabulary Test", category: "Vocabulary", user: testtaro)
@@ -134,6 +158,30 @@ Question.create!(question: "この本のほうがあなたには___はずだ。"
   generated_answers:["A. わかったやすい", "B. わかるやすい", "C. わかりやすい", "D. わかってやすい"],
   correct_answer: "C. わかりやすい", user_answer: "", test: n4grammar)
 puts "N4 Grammar Test complete and unanswered!"
+
+puts "Making a N4 Reading Test"
+n4reading = Test.create!(title: "N4 Reading Test", category: "Reading", user: testtaro)
+Question.create!(context: "A「日本人が昼ごはんによく食べるものは何だと思いますか。」
+  B「そうですね。日本人なら [ 1 ] おすしでしょう。」
+  A「いいえ、ちがうんですよ。」
+  B「じゃあ、てんぷらですか。」
+  A「いいえ、てんぷらでもないんです。ちょっとからい食べ物です。」
+  B「わかった！カレ－でしょう。」
+  A「そうです。この間ざっしで読んだんですが、カレ－だそうです。」
+  B「じゃあ、２ばんめはおすしですか。」
+  A「 [ 2 ] 。でも、２ばんめもすしじゃないです。ラ－メンなんです。」
+  B「そうなんですか。日本人はおすしとてんぷらをよく食べると思っていました。」
+  A「私はすしが大好きで、日本にいたときよく食べました。」
+  B「いいですね。わたしも日本へ行っておすしをたくさん食べたいです。」
+  A「いつか行けるといいですね。日本のすしはほんとうにおいしいですから。」",
+  question: "[ 1 ] には何を入れますか。",
+  generated_answers: ["A. とても", "B. しっかり", "C. やっぱり", "D. たいへん"],
+  correct_answer: "C. やっぱり", user_answer: "", test: n4reading)
+Question.create!(context: "", question: "", generated_answers: ["A. ", "B. ", "C. ", "D. "], correct_answer: "", user_answer: "", test: n4reading)
+Question.create!(context: "", question: "", generated_answers: ["A. ", "B. ", "C. ", "D. "], correct_answer: "", user_answer: "", test: n4reading)
+Question.create!(context: "", question: "", generated_answers: ["A. ", "B. ", "C. ", "D. "], correct_answer: "", user_answer: "", test: n4reading)
+Question.create!(context: "", question: "", generated_answers: ["A. ", "B. ", "C. ", "D. "], correct_answer: "", user_answer: "", test: n4reading)
+puts "N4 Reading Test complete and unanswered!"
 
 # No N4 Reading test yet!
 
