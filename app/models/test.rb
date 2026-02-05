@@ -2,6 +2,7 @@ class Test < ApplicationRecord
   belongs_to :user
   has_many :questions
   validates :title, presence: true
+  has_one_attached :file
   # validates :category, presence: true, inclusion: { in: ["Vocabulary", "Grammar", "Reading", "Kanji"]}
 
   def complete?

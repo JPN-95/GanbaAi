@@ -30,7 +30,7 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
-gem "ruby_llm", "~> 1.2.0"
+gem "ruby_llm"
 
 gem "devise"
 
@@ -48,7 +48,8 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-
+gem "cloudinary"
+gem "image_processing", "~> 1.2" # needed by ActiveStorage
 gem "bootstrap", "~> 5.3"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
