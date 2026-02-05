@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     # calculate the averages using the score model method Katie wrote
     @averages = {}
-    ['vocab', 'kanji', 'grammar', 'reading'].each do |cat|
+    ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |cat|
       cat_tests = @tests.where(category: cat)
 
       if cat_tests.any?
