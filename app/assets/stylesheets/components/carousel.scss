@@ -1,0 +1,20 @@
+.carousel-control-prev {
+  left: -90px;
+}
+
+.carousel-control-next {
+  right: -90px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%);
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 50%;
+  padding: 20px;
+}
+
+.carousel-inner {
+  min-height: 100px;
+  align-items: center;
+}

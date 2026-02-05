@@ -26,7 +26,13 @@ class UsersController < ApplicationController
   end
 
   def progress
+    # user_correct_answers = @question.
+
   end
+
+  # def set_time_zone
+  #   Time.zone = current_user.time_zone
+  # end
 end
 
 #   def set_time_zone
