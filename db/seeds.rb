@@ -10,7 +10,7 @@ testtaro = User.create!(email: "test1@gmail.com", password: "123456", username: 
 # patrick = User.create!(email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
 # katie = User.create!( email: "ru1eBr1tania1@gmail.co.uk", password:"crumpet", username:"uk_swag_tea")
 
-puts "Making a N5 Vocab Test"
+puts "Making a N5 Vocabulary Test"
 n5vocab = Test.create!(title: "N5 Vocab Test", category: "Vocabulary", user: testtaro, level: "N5")
 Question.create!(question:"わたしのすきなスポーツは___です。",
   generated_answers: ["A. ピアノ", "B. レコード", "C. サッカー", "D. テーブル"],
