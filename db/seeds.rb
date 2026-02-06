@@ -10,8 +10,8 @@ testtaro = User.create!(email: "test1@gmail.com", password: "123456", username: 
 # patrick = User.create!(email: "patnew1@gmail.co", password:"bigsecret", username:"lol")
 # katie = User.create!( email: "ru1eBr1tania1@gmail.co.uk", password:"crumpet", username:"uk_swag_tea")
 
-puts "Making a N5 Vocab Test"
-n5vocab = Test.create!(title: "N5 Vocab Test", category: "Vocabulary", user: testtaro)
+puts "Making a N5 Vocabulary Test"
+n5vocab = Test.create!(title: "N5 Vocab Test", category: "Vocabulary", user: testtaro, level: "N5")
 Question.create!(question:"わたしのすきなスポーツは___です。",
   generated_answers: ["A. ピアノ", "B. レコード", "C. サッカー", "D. テーブル"],
   correct_answer: "C. サッカー", user_answer: "C. サッカー", test: n5vocab)
@@ -30,7 +30,7 @@ Question.create!(question: "まちださんはせが___です。",
 puts "N5 Vocab Test complete and answered!"
 
 puts "Making a N5 Kanji Test"
-n5kanji = Test.create!(title: "N5 Kanji Test", category: "Kanji", user: testtaro)
+n5kanji = Test.create!(title: "N5 Kanji Test", category: "Kanji", user: testtaro, level: "N5")
 Question.create!(question: "来月",
   generated_answers:["A. くげつ", "B. らいがつ", "C. くがつ", "D. らいげつ"],
   correct_answer: "D. らいげつ", user_answer: "", test: n5kanji)
@@ -49,7 +49,7 @@ Question.create!(question: "天気",
 puts "N5 Kanji Test complete and unanswered!"
 
 puts "Making a N5 Grammar Test"
-n5grammar = Test.create!(title: "N5 Grammar Test", category: "Grammar", user: testtaro)
+n5grammar = Test.create!(title: "N5 Grammar Test", category: "Grammar", user: testtaro, level: "N5")
 Question.create!(question: "田中さんは___着ていません。",
   generated_answers:["A. もう", "B. だけ", "C. まだ", "D. まで"],
   correct_answer: "C. まだ", user_answer: "", test: n5grammar)
@@ -68,7 +68,7 @@ Question.create!(question: "あの人たちはどこに行っているん___",
 puts "N5 Grammar Test complete and unanswered!"
 
 puts "Making a N5 Reading Test"
-n5reading = Test.create!(title:"N5 Reading Test", category: "Reading", user: testtaro)
+n5reading = Test.create!(title:"N5 Reading Test", category: "Reading", user: testtaro, level: "N5")
 Question.create!(context: "アパートの皆さんへ
   来週の月曜日と火曜日の午前１０時から午後５時までエレベーターを使わないでください。階段を使ってください。",
   question: "アパートの人は、来週の月曜日と火曜日には、外に出る時、どうしますか。",
@@ -101,7 +101,7 @@ puts "N5 Reading Test complete and unanswered!"
 # ---------------------------N5 ^----------------------------------------------------
 
 puts "Making a N4 Vocabulary Test"
-n4vocabulary = Test.create!(title: "N4 Vocabulary Test", category: "Vocabulary", user: testtaro)
+n4vocabulary = Test.create!(title: "N4 Vocabulary Test", category: "Vocabulary", user: testtaro, level: "N4")
 Question.create!(question: "日本では、はる・なつ・あき・ふゆの四つの___があります。",
   generated_answers:["A. てんき", "B. きぶん", "C. きおん", "D. きせつ"],
   correct_answer: "D. きせつ", user_answer: "", test: n4vocabulary)
@@ -120,7 +120,7 @@ Question.create!(question: "じゅぎょうがおわってから、まいにち�
 puts "N4 Vocabulary Test complete and unanswered!"
 
 puts "Making a N4 Kanji Test"
-n4kanji = Test.create!(title: "N4 Kanji Test", category: "Kanji", user: testtaro)
+n4kanji = Test.create!(title: "N4 Kanji Test", category: "Kanji", user: testtaro, level: "N4")
 Question.create!(question: "自分で旅行を計画するのは楽しいです。|| 自分",
   generated_answers:["A. じぶん", "B. ちっぷん", "C. じっぷん", "D. ちぶん"],
   correct_answer: "A. じぶん", user_answer: "", test: n4kanji)
@@ -139,7 +139,7 @@ Question.create!(question: "この学生は毎日地下鉄で大学に通って�
 puts "N4 Kanji Test complete and unanswered!"
 
 puts "Making a N4 Grammar Test"
-n4grammar = Test.create!(title: "N4 Grammar Test", category: "Grammar", user: testtaro)
+n4grammar = Test.create!(title: "N4 Grammar Test", category: "Grammar", user: testtaro, level: "N4")
 Question.create!(question: "あの人は病気ではない___くすりをたくさん飲んでいます。",
   generated_answers:["A. ので", "B. ために", "C. のに", "D. から"],
   correct_answer: "C. のに", user_answer: "", test: n4grammar)
@@ -158,7 +158,7 @@ Question.create!(question: "この本のほうがあなたには___はずだ。"
 puts "N4 Grammar Test complete and unanswered!"
 
 puts "Making a N4 Reading Test"
-n4reading = Test.create!(title: "N4 Reading Test", category: "Reading", user: testtaro)
+n4reading = Test.create!(title: "N4 Reading Test", category: "Reading", user: testtaro, level: "N4")
 Question.create!(context: "A「日本人が昼ごはんによく食べるものは何だと思いますか。」
   B「そうですね。日本人なら [ 1 ] おすしでしょう。」
   A「いいえ、ちがうんですよ。」
@@ -226,7 +226,7 @@ puts "N4 Reading Test complete and unanswered!"
 # ---------------------------N4 ^----------------------------------------------------
 
 puts "Making a N3 Vocabulary Test"
-n3vocab = Test.create!(title: "N3 Vocabulary Test", category: "Vocabulary", user: testtaro)
+n3vocab = Test.create!(title: "N3 Vocabulary Test", category: "Vocabulary", user: testtaro, level: "N3")
 Question.create!(question: "___な資金は、安定した経営、さらに事業拡大できるチャンスにつながります",
   generated_answers:["A. 豊富", "B. 贅沢", "C. 幸福", "D. 多量"],
   correct_answer: "A. 豊富", user_answer: "", test: n3vocab)
@@ -245,7 +245,7 @@ Question.create!(question: "私は、外国語を1日で___マスターしたい
 puts "N3 Vocabulary Test complete and unanswered!"
 
 puts "Making a N3 Kanji Test"
-n3kanji = Test.create!(title: "N3 Kanji Test", category: "Kanji", user: testtaro)
+n3kanji = Test.create!(title: "N3 Kanji Test", category: "Kanji", user: testtaro, level: "N3")
 Question.create!(context: "しばらく一緒に仕事をして、彼なら物事を間違いなく進めてくれると信用した。", question: "物事",
   generated_answers:["A. ぶつじ", "B. ぶつごと", "C. ものじ", "D. ものごと"],
   correct_answer: "D. ものごと", user_answer: "", test: n3kanji)
@@ -264,7 +264,7 @@ Question.create!(context: "強調する方法は、「声を大きくする」�
 puts "N3 Kanji Test complete and unanswered!"
 
 puts "Making a N3 Grammar Test"
-n3grammar = Test.create!(title: "N3 Grammar Test", category: "Grammar", user: testtaro)
+n3grammar = Test.create!(title: "N3 Grammar Test", category: "Grammar", user: testtaro, level: "N3")
 Question.create!(question: "二度とあの部屋に入らないと約束しろ___言われたけど、僕は約束しなかった",
   generated_answers:["A. を", "B. って", "C. のを", "D. だ"],
   correct_answer: "B. って", user_answer: "", test: n3grammar)
@@ -283,7 +283,7 @@ Question.create!(question: "彼女が蛇口をあけ、僕の傷ついた前腕�
 puts "N3 Grammar Test complete and unanswered!"
 
 puts "Making a N3 Reading Test"
-n3reading = Test.create!(title: "N3 Reading Test", category: "Reading", user: testtaro)
+n3reading = Test.create!(title: "N3 Reading Test", category: "Reading", user: testtaro, level: "N3")
 Question.create!(context: "先日、友人を訪ねて岐阜に行きました。待ち合わせの時間まで少し時間があったので古い和傘の店があったので入ってみると、「いらっしゃいませ」と元気な声で店の主人が迎えてくれました。
   和傘作りは江戸時代から続く技術で、明治時代まではどこの町にも必ず1人や2人職人（注）がいたそうです。しかし、日本に西洋文化が入ってくると、今私たちが日頃使っているような、作るのも簡単で値段も安い洋傘がいっきに全国に広まりました。
   年の79歳になる主人の加藤さんはいま、各県に1人か2人いるかいないかという和傘職人（注）の1人です。和傘づくりをやめようと思ったことがあります。そんなある日、たまたま店の前を通りかかった外国のお客さんが「和傘は日本人の性格をとてもよくあらわしているね」と言ったのを聞いて、(1)「ああ、やめちゃだめだ」と、考え直したそうです。
@@ -327,7 +327,7 @@ puts "N3 Reading Test complete and unanswered!"
 # ---------------------------N3 ^----------------------------------------------------
 
 puts "Making a N2 Vocabulary Test"
-n2vocab = Test.create!(title: "N2 Vocabulary Test", category: "Vocabulary", user: testtaro)
+n2vocab = Test.create!(title: "N2 Vocabulary Test", category: "Vocabulary", user: testtaro, level: "N2")
 Question.create!(question: "若い大統領には経験不足という___がある。",
   generated_answers:["A. 弱点", "B. 過失", "C. 飢饉", "D. 落第"],
   correct_answer: "A. 弱点", user_answer: "", test: n2vocab)
@@ -346,7 +346,7 @@ Question.create!(question: "彼は高校の転入___もすでにすませてい�
 puts "N2 Vocabulary Test complete and unanswered!"
 
 puts "Making a N2 Kanji Test"
-n2kanji = Test.create!(title: "N2 Kanji Test", category: "Kanji", user: testtaro)
+n2kanji = Test.create!(title: "N2 Kanji Test", category: "Kanji", user: testtaro, level: "N2")
 Question.create!(context: "語義だけでなく、内容についてさまざまな角度から調べ、理解することが必要です。", question: "角度",
   generated_answers:["A. かくど", "B. かくたび", "C. すみど", "D. すみたび"],
   correct_answer: "A. かくど", user_answer: "", test: n2kanji)
@@ -365,7 +365,7 @@ Question.create!(context: "天気予報によれば、来週の日本列島は�
 puts "N2 Kanji Test complete and unanswered!"
 
 puts "Making a N2 Grammar Test"
-n2grammar = Test.create!(title: "N2 Grammar Test", category: "Grammar", user: testtaro)
+n2grammar = Test.create!(title: "N2 Grammar Test", category: "Grammar", user: testtaro, level: "N2")
 Question.create!(question: "米国の心理学者によると、新しい環境に慣れるのに20歳い平均6か月、30歳で1年、40歳では3年かかるが、19歳以下だと3か月___そうです。つまり、若ければ若いほど早いと言えそうです。",
   generated_answers:["A. もかかる", "B. しかかからない", "C. は必要だ", "D. では十分でない"],
   correct_answer: "B. しかかからない", user_answer: "", test: n2grammar)
@@ -384,7 +384,7 @@ Question.create!(question: "私たち、これから出発するところでさ�
 puts "N2 Grammar Test complete and unanswered!"
 
 puts "Making a N2 Reading Test"
-n2reading = Test.create!(title: "N2 Reading Test", category: "Reading", user: testtaro)
+n2reading = Test.create!(title: "N2 Reading Test", category: "Reading", user: testtaro, level: "N2")
 Question.create!(context: "現代は、(1) 時間がどんどん加速されているとも言われます。何事にも「早く、早く」とせかされ（注１）、時間と競争するかのように忙しさに追われていることを、大人たちはこういう言い方をしているのです。いつも同じ速さで時間が流れているはずなのに、時間の間隔（かんかく）が短くなったような気分で追い立てられて（注２）いるためでしょう。それをエンデ（注３）は『モモ』という作品の中で「時間どろぼう」と呼びました。ゆっくり花を見たり音楽を楽しんだりする、そんなゆったりした時間が盗まれていく、という話でした。(2)
   いつも何かしていないと気が落ち着かない、現代人はそんなふうになっています。
   その一つの原因は、世の中が便利になり、能率的になって、より早く仕事を仕上げることがより優れていると評価されるようになっているためと思われます。競争が激しくなって、人より早くしなければ負けてしまうという恐れを心に抱くようになったためでしょう。「時間は金なり」となってしまったのです。
@@ -424,7 +424,7 @@ puts "N2 Reading Test complete and unanswered!"
 # ---------------------------N2 ^----------------------------------------------------
 
 puts "Making a N1 Vocabulary Test"
-n1vocab = Test.create!(title: "N1 Vocabulary Test", category: "Vocabulary", user: testtaro)
+n1vocab = Test.create!(title: "N1 Vocabulary Test", category: "Vocabulary", user: testtaro, level: "N1")
 Question.create!(question: "ケネディ殺害の容疑者は___に謎を残したままマフィアに撃たれて死亡した。",
   generated_answers:["A. 動機", "B. 本音", "C. 動力", "D. 下心"],
   correct_answer: "A. 動機", user_answer: "", test: n1vocab)
@@ -443,7 +443,7 @@ Question.create!(question: "辞書を引いたら、最初に___されている�
 puts "N1 Vocabulary Test complete and unanswered!"
 
 puts "Making a N1 Kanji Test"
-n1kanji = Test.create!(title: "N1 Kanji Test", category: "Kanji", user: testtaro)
+n1kanji = Test.create!(title: "N1 Kanji Test", category: "Kanji", user: testtaro, level: "N1")
 Question.create!(context:"私は発作性頭位眩暈症という病気の症状に襲われました。", question:"発作",
   generated_answers:["A. はっさ", "B. ほっさ", "C. はっさく", "D. ほっさく"],
   correct_answer: "B. ほっさ", user_answer: "", test: n1kanji)
@@ -462,7 +462,7 @@ Question.create!(context: "にんしんだから休まなきゃいけないの�
 puts "N1 Kanji Test complete and unanswered!"
 
 puts "Making a N1 Grammar Test"
-n1grammar = Test.create!(title: "N1 Grammar Test", category: "Grammar", user: testtaro)
+n1grammar = Test.create!(title: "N1 Grammar Test", category: "Grammar", user: testtaro, level: "N1")
 Question.create!(question: "箱の中身、___にしよう。",
   generated_answers:["A. 見ないこと", "B. 見なかったこと", "C. 見ないもの", "D. 見なかったもの"],
   correct_answer: "B. 見なかったこと", user_answer: "", test: n1grammar)
@@ -481,7 +481,7 @@ Question.create!(question: "英語が話せなくて道を___聞けない。",
 puts "N1 Grammar Test complete and unanswered!"
 
 puts "Making a N1 Reading Test"
-n1reading = Test.create!(title: "N1 Reading Test", category: "Reading", user: testtaro)
+n1reading = Test.create!(title: "N1 Reading Test", category: "Reading", user: testtaro, level: "N1")
 Question.create!(context: "人生というものには、いろいろな問題があります。しかし、それらのことも過ぎ去ってみると、あのときに迷わないでやってほんとうによかったな、というような場合が多いのです。そこが大事なところだと思います。ある場合には迷うこともあるでしょう。しかし、しょせん迷ってもお互い自分の知恵裁量というものは、ほんとうは小さいものです。だから、「これはもう仕方がない。ここまでできたのだからこれ以上進んで結果がうまくいかなくても、それは運命だ」と度胸を決めてしまう。そうした場合には、案外、困難だと思っていたことがスムーズにいって、むしろ非常によい結果を生む、ということにもなるのではないかと思うのです。",
   question:"筆者がここで最も言いたいことは何か。",
   generated_answers: ["A. うまくいかない場合は一人で迷うより、みんなの知恵を借りたほうがいい。", "B. 人生においてしかたないとあきらめることもいい結果をもたらす場合がある。", "C. 人生は心の持ちようで以外にうまくいく場合もある。", "D. 難しい問題に遭っても迷わず実践することが大事だ。"],
