@@ -5,6 +5,23 @@ class TestsController < ApplicationController
 
   def index
     @tests = Test.all
+
+    # if params level is in the URL, filter
+    if params[:level].present?
+      @tests = @tests.where(level: params[:level])
+    end
+
+    if params[:category].present?
+      @tests = @tests.where(category: params[:category])
+    end
+
+    if params[:status].present?
+      if params[:status] == "Complete"
+        @tests = @tests.select { |test| test.complete? }
+      elsif params[:status] == "Incomplete"
+        @tests = @tests.reject { |test| test.complete? }
+      end
+    end
   end
 
   def show
@@ -87,7 +104,7 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:title, :category)
+    params.require(:test).permit(:title, :category, :status)
   end
 
 end

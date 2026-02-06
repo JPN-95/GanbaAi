@@ -1,13 +1,14 @@
 <div class="container">
   <h1>Tests</h1>
-  <div class="my-5">
 
+  <div class="my-5">
     <%= link_to "New test", new_test_path, class: "btn btn-primary mt-5" %>
   </div>
 
   <div class="container">
     <div class="d-flex justify-content-start align-items-center gap-2 mb-4">
       <h2>Sort by</h2>
+
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           Level
@@ -29,7 +30,6 @@
         <ul class="dropdown-menu">
 
           <li><%= link_to "All Categories", tests_path(level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
-
           <li><%= link_to "Vocabulary", tests_path(category: "Vocabulary", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
           <li><%= link_to "Grammar", tests_path(category: "Grammar", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
           <li><%= link_to "Kanji", tests_path(category: "Kanji", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
@@ -37,37 +37,64 @@
         </ul>
       </div>
 
-
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           Sort by:
         </button>
         <ul class="dropdown-menu">
-          <li><%= link_to "All", tests_path(level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
-          <li><%= link_to "Complete", tests_path(status: "Complete", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
-          <li><%= link_to "Incomplete", tests_path(status: "Incomplete", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "All", tests_path(status: "All", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
+          <li><%= link_to "Complete", tests_path(status: "Complete", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
+          <li><%= link_to "Incomplete", tests_path(status: "Incomplete", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
         </ul>
       </div>
     </div>
   </div>
 
 
+  <div class="row g-4"> <% @tests.each do |test| %>
+    <div class="col-md-6 col-lg-4">
+      <%= link_to test_path(test), class: "text-decoration-none" do %>
+        <div class="card h-100 shadow-sm border-2 rounded-4 transition-card <%= test.complete? ? 'border-success' : 'border-light' %>">
 
-    <div class="container">
-      <% @tests.each do |test| %>
-        <%= link_to test_path(test) do %>
-          <% if test.complete? %>
-            <div class="d-flex flex-row p-2 border border-success border-2 mb-1">
-          <% else %>
-            <div class="d-flex flex-row p-2 border border-2 mb-1">
-          <% end %>
-            <div class="p-2 w-100"> <%= test.title %> </div>
-            <div class="p-2 flex-shrink-1"><%= test.category %> </div>
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2">
+                <%= test.category %>
+              </span>
+              <span class="fw-bold text-muted small">
+                <%= test.level %>
+              </span>
+            </div>
+
+            <h5 class="card-title fw-bold text-dark mb-3">
+              <%= test.title %>
+            </h5>
+
+            <div class="mt-4 d-flex align-items-center">
+              <% if test.complete? %>
+                <div class="rounded-circle bg-success p-1 me-2">
+                  <i class="fas fa-check text-white" style="font-size: 0.7rem;"></i>
+                </div>
+                <span class="text-success small fw-bold">Complete</span>
+              <% else %>
+                <div class="rounded-circle bg-warning p-1 me-2">
+                  <i class="fas fa-clock text-white" style="font-size: 0.7rem;"></i>
+                </div>
+                <span class="text-muted small fw-bold">Incomplete</span>
+              <% end %>
+            </div>
           </div>
-        <% end %>
+
+          <div class="card-footer bg-transparent border-0 pb-4 px-4">
+            <div class="btn <%= test.complete? ? 'btn-outline-success' : 'btn-primary' %> w-100 rounded-pill fw-bold">
+              <%= test.complete? ? "Review Results" : "Start Test" %>
+            </div>
+          </div>
+        </div>
       <% end %>
-      </div>
     </div>
+  <% end %>
+</div>
 
 
 </div>
