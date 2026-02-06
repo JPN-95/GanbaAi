@@ -51,43 +51,43 @@
   </div>
 
 
-  <div class="row g-4"> <% @tests.each do |test| %>
+  <div class="row g-4">
+  <% @tests.each do |test| %>
     <div class="col-md-6 col-lg-4">
       <%= link_to test_path(test), class: "text-decoration-none" do %>
-        <div class="card h-100 shadow-sm border-2 rounded-4 transition-card <%= test.complete? ? 'border-success' : 'border-light' %>">
 
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2">
-                <%= test.category %>
-              </span>
-              <span class="fw-bold text-muted small">
+        <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white"
+             style="border-top: 6px solid <%= test.complete? ? '#81A936' : '#A31621' %> !important;">
+
+          <div class="card-body p-4 text-dark">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="rounded-3 bg-light p-2">
+                <i class="<%= case test.category
+                              when 'Vocabulary' then 'bi-alphabet'
+                              when 'Kanji' then 'bi-translate'
+                              else 'bi-journal-text'
+                            end %> text-secondary fs-4"></i>
+              </div>
+              <span class="text-muted small fw-bold text-uppercase" style="letter-spacing: 1px;">
                 <%= test.level %>
               </span>
             </div>
 
-            <h5 class="card-title fw-bold text-dark mb-3">
+            <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
+              <%= test.category %>
+            </h6>
+            <h4 class="fw-bold text-dark mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4;">
               <%= test.title %>
-            </h5>
+            </h4>
 
-            <div class="mt-4 d-flex align-items-center">
-              <% if test.complete? %>
-                <div class="rounded-circle bg-success p-1 me-2">
-                  <i class="fas fa-check text-white" style="font-size: 0.7rem;"></i>
-                </div>
-                <span class="text-success small fw-bold">Complete</span>
-              <% else %>
-                <div class="rounded-circle bg-warning p-1 me-2">
-                  <i class="fas fa-clock text-white" style="font-size: 0.7rem;"></i>
-                </div>
-                <span class="text-muted small fw-bold">Incomplete</span>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="card-footer bg-transparent border-0 pb-4 px-4">
-            <div class="btn <%= test.complete? ? 'btn-outline-success' : 'btn-primary' %> w-100 rounded-pill fw-bold">
-              <%= test.complete? ? "Review Results" : "Start Test" %>
+            <div class="pt-3 border-top border-light mt-auto">
+              <p class="small mb-0 fw-bold text-uppercase" style="letter-spacing: 1px; color: <%= test.complete? ? '#81A936' : '#A31621' %>;">
+                <% if test.complete? %>
+                  <i class="bi bi-check-circle-fill me-1"></i> Completed
+                <% else %>
+                  <i class="bi bi-play-circle-fill me-1"></i> Incomplete
+                <% end %>
+              </p>
             </div>
           </div>
         </div>
@@ -96,13 +96,4 @@
   <% end %>
 </div>
 
-
 </div>
-
-
-<style>
-  a {
-    color: black;
-    text-decoration: none;
-  }
-</style>
