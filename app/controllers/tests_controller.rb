@@ -3,6 +3,19 @@ class TestsController < ApplicationController
 
   before_action :set_test, only: [:show]
 
+  PDF_MAPPING = {
+    "N1" => {
+      "Vocabulary" => "https://res.cloudinary.com/dbz1rqurv/image/upload/v1770360748/n1_vocabulary_kdg6ku.pdf",
+      "Grammar" => "https://res.cloudinary.com/dbz1rqurv/image/upload/v1770360747/n1_grammar_dtpel4.pdf",
+      "Reading" => "https://res.cloudinary.com/dbz1rqurv/image/upload/v1770360748/n1_reading_hxphu8.pdf"
+    },
+    "N2" => {
+      "Vocabulary" => "https://res.cloudinary.com/dbz1rqurv/image/upload/v1770361089/N2V_s2wxza.pdf",
+      "Grammar" => "https://res.cloudinary.com/dbz1rqurv/image/upload/v1770361088/N2G_rn5anh.pdf",
+      "Reading" => "https://res.cloudinary.com/dbz1rqurv/image/upload/v1770361088/N2R_njilvk.pdf"
+    }
+  }.freeze
+
   def index
     @tests = Test.all
   end
@@ -15,30 +28,17 @@ class TestsController < ApplicationController
   end
 
   def create
-    category = params[:category]
-    # system_prompt = <<~PROMPT
+    test_data = params[:test]
+    level    = test_data[:level]
+    category = test_data[:category]
+    title = test_data[:title]
 
-    #   PROMPT
+    gemini = RubyLLM.chat(model: "gemini-2.0-flash")
+
     user_prompt = <<~PROMPT
-      You are an expert academic examiner for the Japanese Language Proficiency Test.
-      Your task is to generate 5 high-quality unambiguous Vocabulary SENTENCE-COMPLETION questions for JLPT N4 relating to daily life for the exam.
-      You must respond ONLY with a JSON object. No conversational text. The
-      test should be N level appropriate. Each question must have enough
-      context so that only one answer is logically correct. Wrong answers should
-      be related to the topic but clearly wrong in the specific grammatical or logical context of the sentence.
-      The questions should only be about the given category.
-      Use only parenthesis and brackets, not 「」。''. Vocabulary test's generated_answers should all be unique words and not
-      conjugations of the same word.
-      N5: One is able to read and understand typical expressions and sentences written in hiragana, katakana, and basic kanji.
-      N4: One is able to read and understand passages on familiar daily topics written in basic vocabulary and kanji.
-      N3: One is able to read and understand written materials with specific contents concerning everyday topics. One is also able to grasp summary information such as newspaper headlines. In addition, one is also able to read slightly difficult writings encountered in everyday situations and understand the main points of the content if some alternative phrases are available to aid one’s understanding.
-      N2: One is able to read materials written clearly on a variety of topics, such as articles and commentaries in newspapers and magazines as well as simple critiques, and comprehend their contents. One is also able to read written materials on general topics and follow their narratives as well as understand the intent of the writers.
-      N1: One is able to read writings with logical complexity and/or abstract writings on a variety of topics, such as newspaper editorials and critiques, and comprehend both their structures and contents. One is also able to read written materials with profound contents on various topics and follow their narratives as well as understand the intent of the writers comprehensively.
-      Each question will have a 4 generated_answers and 1 correct_answer among them. Ensure that 3 of the options are
-      unmistakably incorrect based on the sentence's context. There should only be one explicit answer.
-      Format output will be as follows:
+      Using the content of the PDF create a 5 question test in this exact JSON template:
       {
-        "title": "A simple title accurately joining the input title:#{params[:title]} and input category: #{category}",
+        "title": "#{title} - N#{level}:#{category}",
         "questions": [
           {
             "question": Question text here?",
@@ -47,14 +47,15 @@ class TestsController < ApplicationController
           }
         ]
       }
+      Return the JSON only and include no other symbols, conversational text nor backticks
     PROMPT
+    pdf_url = PDF_MAPPING.dig(level, category)
+    response = gemini.ask(user_prompt, with:{pdf:"https://res.cloudinary.com/dbz1rqurv/image/upload/v1770360748/n1_vocabulary_kdg6ku.pdf"})
+    raw_content = response.content.strip
+    cleaned_json = raw_content.gsub(/```json|```/, '').strip
+    response_hash = JSON.parse(cleaned_json, symbolize_names: true)
 
-    # response = RubyLLM.chat.with_instructions(system_prompt).ask(user_prompt)
-    response = RubyLLM.chat.ask(user_prompt)
-    raw_content = response.content
-    response_hash = JSON.parse(raw_content, symbolize_names: true)
-
-    @test = Test.new(title: response_hash[:title], category: params[:category], user_id: current_user.id)
+    @test = Test.new(title: title, category: category, level: level, user_id: current_user.id)
 
 
     if @test.save
@@ -63,7 +64,7 @@ class TestsController < ApplicationController
     end
       redirect_to test_path(@test)
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -74,7 +75,7 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:title, :category)
+    params.require(:test).permit(:title, :category, :level)
   end
 
 end
