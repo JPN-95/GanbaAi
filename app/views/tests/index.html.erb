@@ -7,7 +7,7 @@
       <h2 class="mb-0 me-2">Sort by</h2>
 
       <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Level</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" style="background-color: #1A70C0; border-color: #1A70C0;">Level</button>
         <ul class="dropdown-menu">
           <li><%= link_to "All Levels", tests_path(category: params[:category], status: params[:status]), class: "dropdown-item" %></li>
           <% ["N1", "N2", "N3", "N4", "N5"].each do |lvl| %>
@@ -17,7 +17,7 @@
       </div>
 
       <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Category</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" style="background-color: #1A70C0; border-color: #1A70C0;">Category</button>
         <ul class="dropdown-menu">
           <li><%= link_to "All Categories", tests_path(level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
           <% ["Vocabulary", "Grammar", "Kanji", "Reading"].each do |cat| %>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Sort by:</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" style="background-color: #1A70C0; border-color: #1A70C0;">Sort by:</button>
         <ul class="dropdown-menu">
           <li><%= link_to "All", tests_path(status: "All", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
           <li><%= link_to "Complete", tests_path(status: "Complete", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
@@ -37,7 +37,7 @@
     </div>
 
     <div>
-      <%= link_to "New test", new_test_path, class: "btn btn-primary" %>
+      <%= link_to "New test", new_test_path, class: "btn btn-primary", style: "background-color: #1A70C0; border-color: #1A70C0" %>
     </div>
   </div>
 
@@ -49,8 +49,8 @@
 
           <%# Test link %>
           <%= link_to test_path(test), class: "text-decoration-none h-100 d-block" do %>
-            <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white"
-                 style="border-top: 6px solid <%= test.complete? ? '#1A936F' : '#A31621' %> !important;">
+            <div class="card h-100 border-0 shadow-sm transition-card bg-white"
+                 style="border-radius: 30px; border-top: 6px solid <%= test.complete? ? '#1A936F' : '#A31621' %> !important;">
 
               <div class="card-body p-4 text-dark">
                 <div class="d-flex justify-content-between align-items-center mb-4">
