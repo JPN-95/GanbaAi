@@ -50,7 +50,7 @@
           <%# Test link %>
           <%= link_to test_path(test), class: "text-decoration-none h-100 d-block" do %>
             <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white"
-                 style="border-top: 6px solid <%= test.complete? ? '#81A936' : '#A31621' %> !important;">
+                 style="border-top: 6px solid <%= test.complete? ? '#1A936F' : '#A31621' %> !important;">
 
               <div class="card-body p-4 text-dark">
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -70,7 +70,7 @@
                 </h4>
 
                 <div class="pt-3 border-top border-light mt-auto">
-                  <p class="small mb-0 fw-bold text-uppercase" style="letter-spacing: 1px; color: <%= test.complete? ? '#81A936' : '#A31621' %>;">
+                  <p class="small mb-0 fw-bold text-uppercase" style="letter-spacing: 1px; color: <%= test.complete? ? '#1A936F' : '#A31621' %>;">
                     <% if test.complete? %>
                       <i class="bi bi-check-circle-fill me-1"></i> Completed
                     <% else %>
@@ -87,7 +87,7 @@
             <%= link_to test_path(test),
                         data: { turbo_method: :delete, turbo_confirm: "Delete the test?"},
                         class: "text-danger p-2" do %>
-              <i class="fas fa-trash-alt"></i>
+              <i class="fas fa-trash-alt" style="color: #A31621"></i>
             <% end %>
           </div>
 
