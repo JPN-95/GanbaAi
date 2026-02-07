@@ -7,7 +7,13 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to test_path(@test), notice: "Answer saved!"
+      respond_to do |format|
+        format.turbo_stream
+        format.html{
+          redirect_to test_path(@test), notice: "Answer saved!"          }
+      end
+
+
     else
       render :edit, status: :unprocessable_entity
     end

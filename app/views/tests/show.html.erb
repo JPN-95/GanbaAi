@@ -1,41 +1,86 @@
 <div class="container">
 
-  <h1> <%= @test.title %> </h1>
-
-  <h2> <%= @test.category %> </h2>
-
-  <%= link_to "Back to all tests", tests_path, class: "btn btn-primary"%>
+  <div class="container pt-4 d-flex">
+    <div class="col-4 justify-content-between">
+      <h1> <%= @test.title %> </h1>
+      <h2> <%= @test.level %> : <%= @test.category %> </h2>
+    </div>
+  </div>
 
   <% if @test.complete? %>
-    <h3> Test complete </h3>
-    <% @test.questions.each do |q| %>
-      <% if q.correct?%>
-        <div class="card my-3 border border-success border-3 p-2">
-      <% else %>
-        <div class="card my-3 border border-danger border-3 p-2">
-      <% end %>
-        <p class="text-body"> <%= q.context %> </p>
-        <p class="text-body"> Question: <%= q.question %> </p>
-        <div class="d-flex flex-row p-2 mb-1">
-          <div class="p-2 flex-fit">
-            <p class="text-body"> Correct answer: <%= q.correct_answer %> </p>
-          </div>
-          <div class="p-2 flex-fit">
-            <p class="text-body"> Your answer: <%= q.user_answer %> </p>
+    <% @test.questions.each_with_index do |q, index| %>
+      <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white mt-4"
+        style="border-top: 6px solid <%= q.correct? ? '#1A936F' : '#A31621' %> !important;">
+
+        <div class="card-body p-4 text-dark">
+
+          <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
+            Question <%= index + 1 %>
+          </h6>
+          <h4 class="fw-bold text-dark mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4;">
+            <%= q.question %>
+          </h4>
+          <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
+            Correct answer
+          </h6>
+          <h4 class="fw-bold text-dark mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4;">
+            <%= q.correct_answer %>
+          </h4>
+          <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
+            Your answer
+          </h6>
+          <% if q.correct? %>
+            <h4 class="fw-bold mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4 letter-spacing: 1px; color: #1A936F;">
+          <% else %>
+            <h4 class="fw-bold mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4 letter-spacing: 1px; color: #A31621;">
+          <% end %>
+            <%= q.user_answer %>
+          </h4>
+          <div class="pt-3 border-top border-light mt-auto">
+
           </div>
         </div>
       </div>
     <% end %>
   <% else %>
-    <h3> Test incomplete </h3>
-    <% @test.questions.each do |q| %>
-        <%= render "questions/form", test: @test, question: q %>
-    <% end %>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white mt-4"
+        style="border-top: 6px solid #1A70C0 !important;">
+          <div class="card-body p-4 text-dark">
+
+          <div class="carousel-inner">
+            <% @test.questions.each_with_index do |q, index| %>
+              <% if index == 0 %>
+                <div class="carousel-item active">
+              <% else %>
+                <div class="carousel-item">
+              <% end %>
+                <%= render "questions/form", test: @test, question: q %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev", style= "height: 200px">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next", style= "height: 200px">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      </div>
+    <%= link_to "Submit my test", test_path(@test), class: "btn btn-success mt-3 mb-3 ms-3"%>
+
   <% end %>
-</div>5
+
+  <%= link_to "Back to all tests", tests_path, class: "btn btn-primary mt-3 mb-3 ms-3"%>
+
+</div>
 
 <style>
-  p {
-    color: black;
+  .test-card:first-child {
+    display: block !important;
   }
 </style>

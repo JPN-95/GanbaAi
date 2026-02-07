@@ -1,14 +1,17 @@
-<div class="question-container">
-  <p> <%= question.context %> </p>
-  <h5><%= question.question %></h5>
-  <%= simple_form_for [test, question] do |f| %>
-    <%= f.input :user_answer,
-                collection: question.generated_answers,
-                as: :radio_buttons,
-                label: "Select the correct option:" %>
-    <%= f.submit "Submit Answer", class: "submit-button" %>
+  <%= turbo_frame_tag "question_#{question.id}" do %>
+
+    <p> <%= question.context %> </p>
+    <h5><%= question.question %></h5>
+    <%= simple_form_for [test, question] do |f| %>
+      <%= f.input :user_answer,
+                  collection: question.generated_answers,
+                  as: :radio_buttons,
+                  label: "Select the correct option:" %>
+      <%= f.submit "Submit Answer", class: "submit-button" %>
+    <% end %>
   <% end %>
-</div>
+
+
 <style>
   .question-container {
     border: 1px solid #ccc;
