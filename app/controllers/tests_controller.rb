@@ -50,7 +50,7 @@ class TestsController < ApplicationController
       Return the JSON only and include no other symbols, conversational text nor backticks
     PROMPT
     pdf_url = PDF_MAPPING.dig(level, category)
-    response = gemini.ask(user_prompt, with:{pdf:"https://res.cloudinary.com/dbz1rqurv/image/upload/v1770360748/n1_vocabulary_kdg6ku.pdf"})
+    response = gemini.ask(user_prompt, with:{pdf:pdf_url})
     raw_content = response.content.strip
     cleaned_json = raw_content.gsub(/```json|```/, '').strip
     response_hash = JSON.parse(cleaned_json, symbolize_names: true)
