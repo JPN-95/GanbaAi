@@ -1,9 +1,23 @@
 .dashboard_cards {
-  background-color: #FCF7F8;
-  height: 225px;
-}
+  background-color: transparent;
+  margin-bottom: 3rem;
 
-.card {
-  color: #FCF7F8;
-  margin: 0;
+  .test-history-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+
+    color: #212529;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+      border-color: #0d6efd !important;
+    }
+
+    .badge {
+      font-weight: 600;
+    }
+  }
 }
