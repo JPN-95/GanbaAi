@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_125742) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "level", null: false
+    t.string "level"
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 

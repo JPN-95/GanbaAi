@@ -1,41 +1,99 @@
 <div class="container">
+  <h1>Tests</h1>
 
   <div class="my-5">
-    <p>Select a category to generate a new test:</p>
-    <div class="row row-cols-5 justify-content-center">
-      <%= link_to "Vocabulary", new_test_path, class: "btn btn-primary mt-5" %>      
-      <%= link_to "Grammar", new_test_path, class: "btn btn-primary mt-5" %>      
-      <%= link_to "Reading", new_test_path, class: "btn btn-primary mt-5" %>      
-      <%= link_to "Kanji", new_test_path, class: "btn btn-primary mt-5" %>      
-    </div>
     <%= link_to "New test", new_test_path, class: "btn btn-primary mt-5" %>
   </div>
 
-  <div>
-  <p> Your quizzes </p>
-    <div>
-      <% @tests.each do |test| %>
-        <%= link_to test_path(test) do %>
-          <% if test.complete? %>
-            <div class="d-flex flex-row p-2 border border-success border-2 mb-1">
-          <% else %>
-            <div class="d-flex flex-row p-2 border border-2 mb-1">
-          <% end %>
-            <div class="p-2 w-100"> <%= test.title %> </div>
-            <div class="p-2 flex-shrink-1"><%= test.category %> </div>
-          </div>
-        <% end %>
-      <% end %>
+  <div class="container">
+    <div class="d-flex justify-content-start align-items-center gap-2 mb-4">
+      <h2>Sort by</h2>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Level
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to "All Levels", tests_path(category: params[:category], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "N1", tests_path(level: "N1", category: params[:category], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "N2", tests_path(level: "N2", category: params[:category], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "N3", tests_path(level: "N3", category: params[:category], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "N4", tests_path(level: "N4", category: params[:category], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "N5", tests_path(level: "N5", category: params[:category], status: params[:status]), class: "dropdown-item" %></li>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Category
+        </button>
+        <ul class="dropdown-menu">
+
+          <li><%= link_to "All Categories", tests_path(level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "Vocabulary", tests_path(category: "Vocabulary", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "Grammar", tests_path(category: "Grammar", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "Kanji", tests_path(category: "Kanji", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
+          <li><%= link_to "Reading", tests_path(category: "Reading", level: params[:level], status: params[:status]), class: "dropdown-item" %></li>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Sort by:
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to "All", tests_path(status: "All", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
+          <li><%= link_to "Complete", tests_path(status: "Complete", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
+          <li><%= link_to "Incomplete", tests_path(status: "Incomplete", level: params[:level], category: params[:category]), class: "dropdown-item" %></li>
+        </ul>
+      </div>
     </div>
   </div>
 
 
+  <div class="row g-4">
+  <% @tests.each do |test| %>
+    <div class="col-md-6 col-lg-4">
+      <%= link_to test_path(test), class: "text-decoration-none" do %>
+
+        <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white"
+             style="border-top: 6px solid <%= test.complete? ? '#81A936' : '#A31621' %> !important;">
+
+          <div class="card-body p-4 text-dark">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="rounded-3 bg-light p-2">
+                <i class="<%= case test.category
+                              when 'Vocabulary' then 'bi-alphabet'
+                              when 'Kanji' then 'bi-translate'
+                              else 'bi-journal-text'
+                            end %> text-secondary fs-4"></i>
+              </div>
+              <span class="text-muted small fw-bold text-uppercase" style="letter-spacing: 1px;">
+                <%= test.level %>
+              </span>
+            </div>
+
+            <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
+              <%= test.category %>
+            </h6>
+            <h4 class="fw-bold text-dark mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4;">
+              <%= test.title %>
+            </h4>
+
+            <div class="pt-3 border-top border-light mt-auto">
+              <p class="small mb-0 fw-bold text-uppercase" style="letter-spacing: 1px; color: <%= test.complete? ? '#81A936' : '#A31621' %>;">
+                <% if test.complete? %>
+                  <i class="bi bi-check-circle-fill me-1"></i> Completed
+                <% else %>
+                  <i class="bi bi-play-circle-fill me-1"></i> Incomplete
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
-
-<style>
-  a {
-    color: black;
-    text-decoration: none;
-  }
-</style>
+</div>
