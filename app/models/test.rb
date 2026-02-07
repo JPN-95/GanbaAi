@@ -1,6 +1,6 @@
 class Test < ApplicationRecord
   belongs_to :user
-  has_many :questions
+  has_many :questions, dependent: :destroy
   validates :title, presence: true
   validates :category, presence: true, inclusion: { in: ["Vocabulary", "Grammar", "Reading", "Kanji"]}
   validates :level, presence: true, inclusion: { in: ["N1", "N2", "N3", "N4", "N5"]}

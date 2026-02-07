@@ -1,7 +1,7 @@
 require 'json'
 class TestsController < ApplicationController
 
-  before_action :set_test, only: [:show]
+  before_action :set_test, only: [:show, :destroy]
 
   PDF_MAPPING = {
     "N1" => {
@@ -83,6 +83,11 @@ class TestsController < ApplicationController
     else
       render :new, status: :unprocessable_content
     end
+  end
+
+  def destroy
+    @test.destroy
+      redirect_to tests_path, notice: "Test was successfully deleted", status: :see_other
   end
 
   private
