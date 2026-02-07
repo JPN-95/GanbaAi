@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   resource :dashboard, only: [:show]
 
-  resources :tests, except: [:edit, :update, :destroy] do
+  resources :tests, except: [:edit, :update] do
     resources :questions, only: [:edit, :update]
   end
 end
