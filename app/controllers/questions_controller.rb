@@ -10,9 +10,10 @@ class QuestionsController < ApplicationController
       respond_to do |format|
         format.turbo_stream
         format.html{
-          redirect_to test_path(@test), notice: "Answer saved!"
-        }
+          redirect_to test_path(@test), notice: "Answer saved!"          }
       end
+
+
     else
       render :edit, status: :unprocessable_entity
     end

@@ -1,3 +1,20 @@
 <%= turbo_stream.replace "question_#{@question.id}" do %>
-  Answer saved! :)
+          <div class="card-body p-4 text-dark">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+
+          </div>
+          <h4 class="fw-bold text-dark mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4;">
+            <%= @question.question %>
+          </h4>
+          <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
+            Your answer
+          </h6>
+            <h4 class="fw-bold mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4 letter-spacing: 1px; color: black;">
+            <%= @question.user_answer %>
+          </h4>
+          <div class="pt-3 border-top border-light mt-auto">
+
+          </div>
+        </div>
+
 <% end %>

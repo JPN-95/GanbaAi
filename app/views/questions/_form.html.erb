@@ -1,4 +1,3 @@
-<div class="question-container">
   <%= turbo_frame_tag "question_#{question.id}" do %>
 
     <p> <%= question.context %> </p>
@@ -12,7 +11,7 @@
     <% end %>
   <% end %>
 
-</div>
+
 <style>
   .question-container {
     border: 1px solid #ccc;

@@ -1,25 +1,18 @@
 <div class="container">
 
   <div class="container pt-4 d-flex">
-    <div class="col justify-content-end">
+    <div class="col-4 justify-content-between">
       <h1> <%= @test.title %> </h1>
       <h2> <%= @test.level %> : <%= @test.category %> </h2>
-    </div>
-
-    <div class="col">
-      <%= link_to "Back to all tests", tests_path, class: "btn btn-primary"%>
     </div>
   </div>
 
   <% if @test.complete? %>
     <% @test.questions.each_with_index do |q, index| %>
       <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white mt-4"
-        style="border-top: 6px solid <%= q.correct? ? '#81A936' : '#A31621' %> !important;">
+        style="border-top: 6px solid <%= q.correct? ? '#1A936F' : '#A31621' %> !important;">
 
         <div class="card-body p-4 text-dark">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-
-          </div>
 
           <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
             Question <%= index + 1 %>
@@ -37,7 +30,7 @@
             Your answer
           </h6>
           <% if q.correct? %>
-            <h4 class="fw-bold mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4 letter-spacing: 1px; color: #81A936;">
+            <h4 class="fw-bold mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4 letter-spacing: 1px; color: #1A936F;">
           <% else %>
             <h4 class="fw-bold mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4 letter-spacing: 1px; color: #A31621;">
           <% end %>
@@ -50,50 +43,44 @@
       </div>
     <% end %>
   <% else %>
-    <h3> Test incomplete </h3>
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+        <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white mt-4"
+        style="border-top: 6px solid #1A70C0 !important;">
+          <div class="card-body p-4 text-dark">
 
-          <% @test.questions.each_with_index do |q, index| %>
-            <% if index == 0 %>
-              <div class="carousel-item active">
-            <% else %>
-              <div class="carousel-item">
+          <div class="carousel-inner">
+            <% @test.questions.each_with_index do |q, index| %>
+              <% if index == 0 %>
+                <div class="carousel-item active">
+              <% else %>
+                <div class="carousel-item">
+              <% end %>
+                <%= render "questions/form", test: @test, question: q %>
+              </div>
             <% end %>
-              <%= render "questions/form", test: @test, question: q %>
-            </div>
-          <% end %>
+          </div>
         </div>
-
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev", style= "height: 200px">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next", style= "height: 200px">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
-    </div>
-
-
-
-
-
+      </div>
+    <%= link_to "Submit my test", test_path(@test), class: "btn btn-success mt-3 mb-3 ms-3"%>
 
   <% end %>
+
+  <%= link_to "Back to all tests", tests_path, class: "btn btn-primary mt-3 mb-3 ms-3"%>
+
 </div>
 
 <style>
   .test-card:first-child {
     display: block !important;
-  }
-</style>
-
-
-
-<style>
-  p {
-    color: black;
   }
 </style>
