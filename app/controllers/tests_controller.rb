@@ -70,28 +70,28 @@ class TestsController < ApplicationController
     gemini = RubyLLM.chat(model: "gemini-2.0-flash")
 
 
-    if category === "Reading" || category === "Kanji"
+    if category === "Reading"
     user_prompt = <<~PROMPT
-      Using the content of the PDF create a unique 5 question test.
-      The test should not be just a copy of the PDF questions.
-      The questions should reflect the difficulty of the PDF questions
-      The questions should be the appropriate JLPT N#{level} and the PDF question level.
-      in this exact JSON template:
-      {
-        "title": "#{title} - N#{level}:#{category}",
-        "questions": [
-          {
-            "question": Question text here? Text should be in its original language",
-            "generated_answers":["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-            "correct_answer": "The exact string from the array which is correct",
-            "context": "The exact and ENTIRE string that accompanies a reading or kanji question in its original language."
-          }
-        ]
-      }
-      Return the JSON only and include no other symbols, conversational text nor backticks.
-      Use plain text, No unicode escapes, No special formatting, No HTML.
-      For emphasis use simple markdown like * word * if needed
-    PROMPT
+        Using the content of the PDF create a unique 5 question test.
+        The test should not be just a copy of the PDF questions.
+        The questions should reflect the difficulty of the PDF questions
+        The questions should be the appropriate JLPT N#{level} and the PDF question level.
+        in this exact JSON template:
+        {
+          "title": "#{title} - N#{level}:#{category}",
+          "questions": [
+            {
+              "question": Question text here? Text should be in its original language",
+              "generated_answers":["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
+              "correct_answer": "The exact string from the array which is correct",
+              "context": "The exact and ENTIRE Paragraph as a string that accompanies a reading question in its original language."
+            }
+          ]
+        }
+        Return the JSON only and include no other symbols, conversational text nor backticks.
+        Use plain text, No unicode escapes, No special formatting, No HTML.
+        For emphasis use simple markdown like * word * if needed
+      PROMPT
     else
       user_prompt = <<~PROMPT
         Using the content of the PDF create a unique 5 question test.
