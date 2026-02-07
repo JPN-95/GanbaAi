@@ -35,10 +35,9 @@
           score = raw_score.round(0)
         %>
         <div class="col-md-3">
-          <div class="card h-100 shadow-sm"
-               style="border-radius: 20px; background-color: #ffffff; overflow: hidden; border: 1px solid rgba(0,0,0,0.08);">
+          <div class="card h-100 shadow-sm border-0" style="border-radius: 20px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08);">
             <div style="height: 5px; width: 100%; background: #0d6efd;"></div>
-            <div class="card-body p-4 text-dark">
+            <div class="card-body p-4 text-dark bg-white">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="rounded-3 bg-primary bg-opacity-10 p-2">
                   <i class="<%= icons[category] %> text-primary fs-4"></i>
@@ -47,32 +46,23 @@
                   <%= pluralize(@tests.where(category: category).count, "Test") %>
                 </span>
               </div>
-              <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1px;">
-                <%= category %>
-              </h6>
+              <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1px;"><%= category %></h6>
               <div class="d-flex align-items-baseline">
-                <h2 class="fw-bold text-dark mb-0" style="font-size: 2.5rem;">
-                  <%= score %>
-                </h2>
+                <h2 class="fw-bold text-dark mb-0" style="font-size: 2.5rem;"><%= score %></h2>
                 <span class="ms-1 text-primary fw-bold fs-4">%</span>
               </div>
-              <div class="progress mt-3" style="height: 8px; border-radius: 10px; background-color: #f0f0f0;">
-                <div class="progress-bar bg-primary shadow-sm"
-                     role="progressbar"
-                     style="width: <%= score %>%;"
-                     aria-valuenow="<%= score %>"
-                     aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <p class="text-muted small fw-semibold mb-0">Average Score</p>
               </div>
-              <p class="text-muted small mt-3 mb-0">Average Score</p>
+              <div class="progress mt-2" style="height: 8px; border-radius: 10px; background-color: #f0f0f0;">
+                <div class="progress-bar bg-primary shadow-sm" style="width: <%= score %>%;"></div>
+              </div>
             </div>
           </div>
         </div>
       <% end %>
     </div>
   </div>
-<<<<<<< HEAD
   <hr class="my-5 opacity-25">
   <% ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |category| %>
     <div class="dashboard_cards container mt-5" style="overflow: visible;">
@@ -80,20 +70,12 @@
         <h2 class="h4 fw-bold mb-0 text-dark"><%= category %> History</h2>
         <div class="d-flex gap-2">
           <button class="btn btn-outline-dark btn-sm rounded-circle shadow-sm bg-white nav-arrow"
-                  type="button"
-                  data-bs-target="#carousel-<%= category.parameterize %>"
-                  data-bs-slide="prev">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-            </svg>
+                  type="button" data-bs-target="#carousel-<%= category.parameterize %>" data-bs-slide="prev">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
           </button>
           <button class="btn btn-outline-dark btn-sm rounded-circle shadow-sm bg-white nav-arrow"
-                  type="button"
-                  data-bs-target="#carousel-<%= category.parameterize %>"
-                  data-bs-slide="next">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
+                  type="button" data-bs-target="#carousel-<%= category.parameterize %>" data-bs-slide="next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
           </button>
         </div>
       </div>
@@ -106,18 +88,23 @@
                 <div class="row g-4 py-2">
                   <% group.each do |test| %>
                     <div class="col-md-4">
-                      <div class="card h-100 shadow-sm border-0 test-history-card">
-                        <div class="card-body p-4 text-dark">
-                          <h5 class="fw-bold text-dark mb-2 text-truncate"><%= test.title %></h5>
-                          <div class="d-flex align-items-center gap-2 mb-3">
-                            <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1">
+                      <div class="card h-100 shadow-sm border-0 test-history-card" style="overflow: hidden;">
+                        <div style="height: 6px; width: 100%; background: #0d6efd;"></div>
+                        <div class="card-body p-4 d-flex flex-column bg-white">
+                          <span class="card-category-label mb-2"><%= category %></span>
+                          <h5 class="fw-bold text-dark mb-4"><%= test.title %></h5>
+                          <div class="d-flex align-items-center gap-3 mb-4">
+                            <span class="badge rounded-pill px-3 py-2" style="background-color: #E8F0FE; color: #1967D2; font-weight: 700;">
                               Score: <%= number_to_percentage(test.score, precision: 0) %>
                             </span>
-                            <small class="text-muted"><%= test.questions.count %> Questions</small>
+                            <span class="text-muted small fw-semibold"><%= test.questions.count %> Questions</span>
                           </div>
-                          <%= link_to test_path(test), class: "stretched-link text-primary fw-semibold text-decoration-none small" do %>
-                            Review Test
-                          <% end %>
+                          <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                            <span class="status-label text-success text-uppercase">Completed</span>
+                            <%= link_to test_path(test), class: "text-primary fw-bold text-decoration-none small" do %>
+                              Review Test
+                            <% end %>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -134,147 +121,4 @@
       </div>
     </div>
   <% end %>
-=======
-</div>
-<hr class="my-5 opacity-25">
-
-<div class="dashboard_cards container mt-4">
-  <h2 class="mb-4">Vocabulary</h2>
-  <div id="vocabulary" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <% @tests.where(category: "Vocabulary").in_groups_of(3, false).each_with_index do |group, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>">
-          <div class="row">
-            <% group.each do |test| %>
-              <div class="col-md-4">
-                <div class="card text-bg-primary mb-3">
-                  <div class="card-header">
-                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
-                    <p class="card-text">Questions: <%= test.questions.count %></p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#vocabulary" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#vocabulary" data-bs-slide="next">
-      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-
-<div class="dashboard_cards container mt-4">
-  <h2 class="mb-4">Kanji</h2>
-  <div id="kanji" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <% @tests.where(category: "Kanji").in_groups_of(3, false).each_with_index do |group, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>">
-          <div class="row">
-            <% group.each do |test| %>
-              <div class="col-md-4">
-                <div class="card text-bg-primary mb-3">
-                  <div class="card-header">
-                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
-                    <p class="card-text">Questions: <%= test.questions.count %></p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#kanji" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#kanji" data-bs-slide="next">
-      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-
-<div class="dashboard_cards container mt-4">
-  <h2 class="mb-4">Grammar</h2>
-  <div id="grammar" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <% @tests.where(category: "Grammar").in_groups_of(3, false).each_with_index do |group, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>">
-          <div class="row">
-            <% group.each do |test| %>
-              <div class="col-md-4">
-                <div class="card text-bg-primary mb-3">
-                  <div class="card-header">
-                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
-                    <p class="card-text">Questions: <%= test.questions.count %></p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#grammar" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#grammar" data-bs-slide="next">
-      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-
-<div class="dashboard_cards container mt-4">
-  <h2 class="mb-4">Reading</h2>
-  <div id="reading" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <% @tests.where(category: "Reading").in_groups_of(3, false).each_with_index do |group, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>">
-          <div class="row">
-            <% group.each do |test| %>
-              <div class="col-md-4">
-                <div class="card text-bg-primary mb-3">
-                  <div class="card-header">
-                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
-                    <p class="card-text">Questions: <%= test.questions.count %></p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#reading" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#reading" data-bs-slide="next">
-      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
->>>>>>> master
 </div>

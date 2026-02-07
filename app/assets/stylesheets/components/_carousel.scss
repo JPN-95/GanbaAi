@@ -38,12 +38,37 @@
     &:hover {
       background-color: #f8f9fa;
       border-color: #212529;
-      color: #212529;
       transform: scale(1.1);
 
       svg {
         fill: #212529;
       }
     }
+  }
+}
+
+.test-history-card {
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(0,0,0,0.08);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  }
+
+  .card-category-label {
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
+  }
+
+  .status-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
   }
 }

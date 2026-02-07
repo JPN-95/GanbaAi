@@ -2,22 +2,42 @@
   background-color: transparent;
   margin-bottom: 3rem;
 
-  .test-history-card {
+  .test-history-card, .col-md-3 .card {
     background-color: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
     border-radius: 20px;
     transition: all 0.3s ease;
-
     color: #212529;
 
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
-      border-color: #0d6efd !important;
+    .card-category-label {
+      font-size: 0.7rem;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      color: #6c757d;
+      text-transform: uppercase;
+    }
+
+    .status-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .small.fw-semibold {
+      font-size: 0.75rem;
+      color: #8c949c;
     }
 
     .badge {
       font-weight: 600;
+    }
+  }
+
+  .test-history-card {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-color: #0d6efd;
     }
   }
 }
