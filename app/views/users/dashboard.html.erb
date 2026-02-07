@@ -1,124 +1,128 @@
-<div class="container mt-4 mb-5">
-  <div class="row justify-content-center mb-5">
-    <div class="col-lg-10">
-      <div class="card shadow-sm text-center p-5"
-           style="border-radius: 30px; background-color: #ffffff; border: 1px solid rgba(0,0,0,0.08);">
-        <div class="card-body">
-          <h1 class="fw-bold text-dark mb-2">GanbaAI Dashboard</h1>
-          <% if current_user %>
-            <p class="fs-5 text-secondary mb-4">
-              Welcome back, <span class="text-primary fw-semibold"><%= current_user.username %></span>.
-              You've completed
-              <strong class="text-dark">
-                <%= @tests.count %> / <%= @total_available_tests %>
-              </strong>
-              tests so far.
-            </p>
-          <% end %>
-          <%= link_to tests_path, class: "btn btn-primary btn-lg rounded-pill px-5 shadow-sm" do %>
-            <i class="bi bi-collection-play me-2"></i>All Tests
-          <% end %>
+<div class="py-4" style="background-color: #FCF7F8; min-height: 100vh;">
+  <div class="container mt-4 mb-5">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10">
+        <div class="card shadow-sm text-center p-5"
+             style="border-radius: 30px; background-color: #ffffff; border: 1px solid rgba(0,0,0,0.05);">
+          <div class="card-body">
+            <h1 class="fw-bold text-dark mb-2">GanbaAI Dashboard</h1>
+            <% if current_user %>
+              <p class="fs-5 text-secondary mb-4">
+                Welcome back, <span style="color: #1A70C0;" class="fw-semibold"><%= current_user.username %></span>.
+                You've completed
+                <strong class="text-dark">
+                  <%= @tests.count %> / <%= @total_available_tests %>
+                </strong>
+                tests so far.
+              </p>
+            <% end %>
+            <%= link_to tests_path, class: "btn btn-lg rounded-pill px-5 shadow-sm text-white border-0",
+                style: "background-color: #1A70C0;" do %>
+              <i class="bi bi-collection-play me-2"></i>All Tests
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="mt-5">
-    <div class="d-flex align-items-center mb-4">
-      <h2 class="h4 fw-bold mb-0 text-dark">My Study Stats</h2>
-      <div class="ms-3 flex-grow-1 border-top opacity-25"></div>
-    </div>
-    <div class="row g-4 justify-content-center">
-      <% icons = { 'Vocabulary' => 'bi-alphabet', 'Kanji' => 'bi-translate', 'Grammar' => 'bi-spellcheck', 'Reading' => 'bi-book' } %>
-      <% ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |category| %>
-        <%
-          raw_score = @averages[category] || 0
-          score = raw_score.round(0)
-        %>
-        <div class="col-md-3">
-          <div class="card h-100 shadow-sm border-0" style="border-radius: 20px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08);">
-            <div style="height: 5px; width: 100%; background: #0d6efd;"></div>
-            <div class="card-body p-4 text-dark bg-white">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="rounded-3 bg-primary bg-opacity-10 p-2">
-                  <i class="<%= icons[category] %> text-primary fs-4"></i>
+    <div class="mt-5">
+      <div class="d-flex align-items-center mb-4">
+        <h2 class="h4 fw-bold mb-0 text-dark">My Study Stats</h2>
+        <div class="ms-3 flex-grow-1 border-top opacity-25"></div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <% icons = { 'Vocabulary' => 'bi-alphabet', 'Kanji' => 'bi-translate', 'Grammar' => 'bi-spellcheck', 'Reading' => 'bi-book' } %>
+        <% ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |category| %>
+          <%
+            raw_score = @averages[category] || 0
+            score = raw_score.round(0)
+            bar_color = score >= 80 ? "#1A936F" : (score < 50 ? "#A31621" : "#1A70C0")
+          %>
+          <div class="col-md-3">
+            <div class="card h-100 shadow-sm border-0 stat-card" style="border-radius: 30px; overflow: hidden;">
+              <div style="height: 6px; width: 100%; background: #1A70C0;"></div>
+              <div class="card-body p-4 text-dark bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="rounded-3 p-2" style="background-color: rgba(26, 112, 192, 0.1);">
+                    <i class="<%= icons[category] %> fs-4" style="color: #1A70C0;"></i>
+                  </div>
+                  <span class="text-muted small fw-bold text-uppercase">
+                    <%= pluralize(@tests.where(category: category).count, "Test") %>
+                  </span>
                 </div>
-                <span class="text-muted small fw-bold text-uppercase">
-                  <%= pluralize(@tests.where(category: category).count, "Test") %>
-                </span>
-              </div>
-              <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1px;"><%= category %></h6>
-              <div class="d-flex align-items-baseline">
-                <h2 class="fw-bold text-dark mb-0" style="font-size: 2.5rem;"><%= score %></h2>
-                <span class="ms-1 text-primary fw-bold fs-4">%</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center mt-3">
-                <p class="text-muted small fw-semibold mb-0">Average Score</p>
-              </div>
-              <div class="progress mt-2" style="height: 8px; border-radius: 10px; background-color: #f0f0f0;">
-                <div class="progress-bar bg-primary shadow-sm" style="width: <%= score %>%;"></div>
+                <h6 class="card-category-label mb-1"><%= category %></h6>
+                <div class="d-flex align-items-baseline">
+                  <h2 class="fw-bold text-dark mb-0" style="font-size: 2.5rem;"><%= score %></h2>
+                  <span class="ms-1 fw-bold fs-4" style="color: #1A70C0;">%</span>
+                </div>
+                <div class="mt-3">
+                  <p class="small fw-semibold mb-1 text-muted">Average Score</p>
+                  <div class="progress" style="height: 8px; border-radius: 10px; background-color: #E9ECEF;">
+                    <div class="progress-bar shadow-sm" style="width: <%= score %>%; background-color: <%= bar_color %>;"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <hr class="my-5 opacity-25">
-  <% ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |category| %>
-    <div class="dashboard_cards container mt-5" style="overflow: visible;">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="h4 fw-bold mb-0 text-dark"><%= category %> History</h2>
-        <div class="d-flex gap-2">
-          <button class="btn btn-outline-dark btn-sm rounded-circle shadow-sm bg-white nav-arrow"
-                  type="button" data-bs-target="#carousel-<%= category.parameterize %>" data-bs-slide="prev">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
-          </button>
-          <button class="btn btn-outline-dark btn-sm rounded-circle shadow-sm bg-white nav-arrow"
-                  type="button" data-bs-target="#carousel-<%= category.parameterize %>" data-bs-slide="next">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-          </button>
-        </div>
+        <% end %>
       </div>
-      <div id="carousel-<%= category.parameterize %>" class="carousel slide" data-bs-ride="false" style="overflow: visible;">
-        <div class="carousel-inner" style="overflow: visible;">
-          <% category_tests = @tests.where(category: category) %>
-          <% if category_tests.any? %>
-            <% category_tests.in_groups_of(3, false).each_with_index do |group, index| %>
-              <div class="carousel-item <%= 'active' if index == 0 %>" style="overflow: visible;">
-                <div class="row g-4 py-2">
-                  <% group.each do |test| %>
-                    <div class="col-md-4">
-                      <div class="card h-100 shadow-sm border-0 test-history-card" style="overflow: hidden;">
-                        <div style="height: 6px; width: 100%; background: #0d6efd;"></div>
-                        <div class="card-body p-4 d-flex flex-column bg-white">
-                          <span class="card-category-label mb-2"><%= category %></span>
-                          <h5 class="fw-bold text-dark mb-4"><%= test.title %></h5>
-                          <div class="d-flex align-items-center gap-3 mb-4">
-                            <span class="badge rounded-pill px-3 py-2" style="background-color: #E8F0FE; color: #1967D2; font-weight: 700;">
-                              Score: <%= number_to_percentage(test.score, precision: 0) %>
-                            </span>
-                            <span class="text-muted small fw-semibold"><%= test.questions.count %> Questions</span>
-                          </div>
-                          <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
-                            <span class="status-label text-success text-uppercase">Completed</span>
-                            <%= link_to test_path(test), class: "text-primary fw-bold text-decoration-none small" do %>
-                              Review Test
-                            <% end %>
+    </div>
+    <hr class="my-5 opacity-25">
+    <% ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |category| %>
+      <div class="dashboard_cards mt-5" style="overflow: visible;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="h4 fw-bold mb-0 text-dark"><%= category %> History</h2>
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm rounded-circle shadow-sm bg-white nav-arrow"
+                    type="button" data-bs-target="#carousel-<%= category.parameterize %>" data-bs-slide="prev">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+            </button>
+            <button class="btn btn-sm rounded-circle shadow-sm bg-white nav-arrow"
+                    type="button" data-bs-target="#carousel-<%= category.parameterize %>" data-bs-slide="next">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="carousel-<%= category.parameterize %>" class="carousel slide" data-bs-ride="false" style="overflow: visible;">
+          <div class="carousel-inner" style="overflow: visible;">
+            <% category_tests = @tests.where(category: category) %>
+            <% if category_tests.any? %>
+              <% category_tests.in_groups_of(3, false).each_with_index do |group, index| %>
+                <div class="carousel-item <%= 'active' if index == 0 %>" style="overflow: visible;">
+                  <div class="row g-4 py-2">
+                    <% group.each do |test| %>
+                      <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 test-history-card" style="border-radius: 30px;">
+                          <div style="height: 6px; width: 100%; background: #1A70C0;"></div>
+                          <div class="card-body p-4 d-flex flex-column bg-white">
+                            <span class="card-category-label mb-2"><%= category %></span>
+                            <h5 class="fw-bold text-dark mb-4"><%= test.title %></h5>
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                              <span class="badge rounded-pill px-3 py-2" style="background-color: rgba(26, 147, 111, 0.1); color: #1A936F; font-weight: 700;">
+                                Score: <%= number_to_percentage(test.score, precision: 0) %>
+                              </span>
+                              <span class="text-muted small fw-semibold"><%= test.questions.count %> Questions</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                              <span class="status-label text-uppercase" style="color: #1A936F;">Completed</span>
+                              <%= link_to test_path(test), class: "fw-bold text-decoration-none small review-link" do %>
+                                Review Test <i class="bi bi-chevron-right"></i>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  <% end %>
+                    <% end %>
+                  </div>
                 </div>
+              <% end %>
+            <% else %>
+              <div class="text-center py-5 bg-white rounded-4 shadow-sm border border-dashed border-2" style="border-radius: 30px;">
+                <p class="text-muted mb-0">No <%= category.downcase %> tests completed yet.</p>
               </div>
             <% end %>
-          <% else %>
-            <div class="text-center py-5 bg-white rounded-4 shadow-sm border border-dashed border-2">
-              <p class="text-muted mb-0">No <%= category.downcase %> tests completed yet.</p>
-            </div>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

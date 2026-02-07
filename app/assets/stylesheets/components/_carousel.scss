@@ -13,62 +13,27 @@
     }
   }
 
-  button.btn.btn-outline-dark.nav-arrow {
+  button.btn.nav-arrow {
     background-color: #ffffff;
-    border: 2px solid #212529;
+    border: 2px solid #1A70C0;
     width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    transition: all 0.2s ease;
-    color: #212529;
-    opacity: 1;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 5;
 
     svg {
-      width: 24px;
-      height: 24px;
-      fill: #212529;
-      pointer-events: none;
+      fill: #1A70C0;
       transition: fill 0.2s ease;
     }
 
     &:hover {
-      background-color: #f8f9fa;
-      border-color: #212529;
+      background-color: #1A70C0;
       transform: scale(1.1);
-
-      svg {
-        fill: #212529;
-      }
+      svg { fill: #FCF7F8; }
     }
-  }
-}
-
-.test-history-card {
-  border-radius: 12px;
-  background-color: #ffffff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid rgba(0,0,0,0.08);
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  }
-
-  .card-category-label {
-    font-size: 0.7rem;
-    letter-spacing: 1.2px;
-    font-weight: 700;
-    color: #6c757d;
-    text-transform: uppercase;
-  }
-
-  .status-label {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
   }
 }

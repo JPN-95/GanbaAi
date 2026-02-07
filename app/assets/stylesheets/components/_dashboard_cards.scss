@@ -1,43 +1,52 @@
-.dashboard_cards {
-  background-color: transparent;
-  margin-bottom: 3rem;
+.stat-card, .test-history-card {
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 30px !important;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 
-  .test-history-card, .col-md-3 .card {
-    background-color: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    color: #212529;
-
-    .card-category-label {
-      font-size: 0.7rem;
-      letter-spacing: 1.2px;
-      font-weight: 700;
-      color: #6c757d;
-      text-transform: uppercase;
-    }
-
-    .status-label {
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-
-    .small.fw-semibold {
-      font-size: 0.75rem;
-      color: #8c949c;
-    }
-
-    .badge {
-      font-weight: 600;
-    }
+  .card-category-label {
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
   }
 
-  .test-history-card {
+  .status-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #1A936F;
+  }
+
+
+  .small.fw-semibold {
+    font-size: 0.75rem;
+    color: #8c949c;
+  }
+}
+
+.test-history-card {
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(26, 112, 192, 0.15);
+    border-color: rgba(26, 112, 192, 0.3);
+  }
+
+  .review-link {
+    color: #A31621;
+    transition: color 0.2s ease;
+
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      border-color: #0d6efd;
+      color: #1A70C0;
+      text-decoration: none;
     }
+  }
+}
+
+.stat-card {
+  &:hover {
+    transform: none;
   }
 }
