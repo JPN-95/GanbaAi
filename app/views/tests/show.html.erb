@@ -12,7 +12,7 @@
   </div>
 
   <% if @test.complete? %>
-    <% @test.questions.each do |q| %>
+    <% @test.questions.each_with_index do |q, index| %>
       <div class="card h-100 border-0 shadow-sm rounded-4 transition-card bg-white mt-4"
         style="border-top: 6px solid <%= q.correct? ? '#81A936' : '#A31621' %> !important;">
 
@@ -22,7 +22,7 @@
           </div>
 
           <h6 class="text-secondary text-uppercase small fw-bold mb-1" style="letter-spacing: 1.5px;">
-            Question
+            Question <%= index + 1 %>
           </h6>
           <h4 class="fw-bold text-dark mb-4" style="font-family: 'Inter', sans-serif; line-height: 1.4;">
             <%= q.question %>
@@ -53,6 +53,7 @@
     <h3> Test incomplete </h3>
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
+
           <% @test.questions.each_with_index do |q, index| %>
             <% if index == 0 %>
               <div class="carousel-item active">
@@ -63,6 +64,7 @@
             </div>
           <% end %>
         </div>
+
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
