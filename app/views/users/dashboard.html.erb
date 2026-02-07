@@ -72,6 +72,7 @@
       <% end %>
     </div>
   </div>
+<<<<<<< HEAD
   <hr class="my-5 opacity-25">
   <% ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |category| %>
     <div class="dashboard_cards container mt-5" style="overflow: visible;">
@@ -133,4 +134,147 @@
       </div>
     </div>
   <% end %>
+=======
+</div>
+<hr class="my-5 opacity-25">
+
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">Vocabulary</h2>
+  <div id="vocabulary" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+      <% @tests.where(category: "Vocabulary").in_groups_of(3, false).each_with_index do |group, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="row">
+            <% group.each do |test| %>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">
+                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
+                    <p class="card-text">Questions: <%= test.questions.count %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#vocabulary" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#vocabulary" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">Kanji</h2>
+  <div id="kanji" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+      <% @tests.where(category: "Kanji").in_groups_of(3, false).each_with_index do |group, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="row">
+            <% group.each do |test| %>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">
+                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
+                    <p class="card-text">Questions: <%= test.questions.count %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#kanji" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#kanji" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">Grammar</h2>
+  <div id="grammar" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+      <% @tests.where(category: "Grammar").in_groups_of(3, false).each_with_index do |group, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="row">
+            <% group.each do |test| %>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">
+                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
+                    <p class="card-text">Questions: <%= test.questions.count %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#grammar" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#grammar" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="dashboard_cards container mt-4">
+  <h2 class="mb-4">Reading</h2>
+  <div id="reading" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+      <% @tests.where(category: "Reading").in_groups_of(3, false).each_with_index do |group, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="row">
+            <% group.each do |test| %>
+              <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                  <div class="card-header">
+                    <%= link_to test.title, test_path(test), class: "stretched-link text-white text-decoration-none" %>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-truncate">Score: <%= number_to_percentage(test.score, precision: 0) %></h5>
+                    <p class="card-text">Questions: <%= test.questions.count %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#reading" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#reading" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+>>>>>>> master
 </div>

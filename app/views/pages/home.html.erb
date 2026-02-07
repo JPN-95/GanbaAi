@@ -1,2 +1,47 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col p-3">
+      <h1 class="display-3 ms-4"> Ganba AI for </h1>
+      <h1 class="display-3 ms-4"> JLPT N5 - N1 </h1>
+      <h3 class="ms-5"> Build vocabulary, master grammar, perfect kanji, and tackle reading all in one place.</p>
+    </div>
+
+    <div class="col mt-3">
+      <%= image_tag "laptop.png", class: "img-fluid"%>
+    </div>
+  </div>
+
+  <h2 class="text-center display-5 my-3"> How it works </h2>
+  <div class="row">
+    <div class="col">
+      <div>
+        <%= image_tag "Generate.png", class: "img-fluid"%>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <%= image_tag "Test.png", class: "img-fluid"%>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <%= image_tag "Track.png", class: "img-fluid"%>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <h4> Generate a test </h4>
+      <p>Use our AI to generate a test for your chosen level and category.</p>
+    </div>
+    <div class="col text-center">
+      <h4> Try & Learn </h4>
+      <p> Take the test and learn from your mistakes. </p>
+    </div>
+    <div class="col text-center">
+      <h4> Track </h4>
+      <p> Track your progress and level up in time for the JLPT. </p>
+    </div>
+  </div>
+</div>

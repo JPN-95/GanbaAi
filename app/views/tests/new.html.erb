@@ -1,9 +1,10 @@
 <div class="container">
-  <h1> Hello from new test </h1>
+  <h1> Let's make a new test! </h1>
 
   <%= simple_form_for(@test) do |f| %>
     <%= f.input :title %>
-    <%= f.input :category %>
+    <%= f.input :category, :collection => %w[Vocabulary Kanji Grammar Reading] %>
+    <%= f.input :level, :collection => %w[N1 N2 N3 N4 N5] %>
     <%= f.input :user_id, as: :hidden, input_html: { value: current_user } %>
     <%= f.submit %>
   <% end %>

@@ -2,7 +2,8 @@ class Test < ApplicationRecord
   belongs_to :user
   has_many :questions
   validates :title, presence: true
-  # validates :category, presence: true, inclusion: { in: ["Vocabulary", "Grammar", "Reading", "Kanji"]}
+  validates :category, presence: true, inclusion: { in: ["Vocabulary", "Grammar", "Reading", "Kanji"]}
+  validates :level, presence: true, inclusion: { in: ["N1", "N2", "N3", "N4", "N5"]}
 
   def complete?
     !questions.where(user_answer: "").exists?
