@@ -1,10 +1,15 @@
 <div class="container">
 
-  <h1> <%= @test.title %> </h1>
+  <div class="container pt-4 d-flex">
+    <div class="col justify-content-end">
+      <h1> <%= @test.title %> </h1>
+      <h2> <%= @test.level %> : <%= @test.category %> </h2>
+    </div>
 
-  <h2> <%= @test.category %> </h2>
-
-  <%= link_to "Back to all tests", tests_path, class: "btn btn-primary"%>
+    <div class="col">
+      <%= link_to "Back to all tests", tests_path, class: "btn btn-primary"%>
+    </div>
+  </div>
 
   <% if @test.complete? %>
     <% @test.questions.each do |q| %>
@@ -46,11 +51,44 @@
     <% end %>
   <% else %>
     <h3> Test incomplete </h3>
-    <% @test.questions.each do |q| %>
-        <%= render "questions/form", test: @test, question: q %>
-    <% end %>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% @test.questions.each_with_index do |q, index| %>
+            <% if index == 0 %>
+              <div class="carousel-item active">
+            <% else %>
+              <div class="carousel-item">
+            <% end %>
+              <%= render "questions/form", test: @test, question: q %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+
+
+
+
   <% end %>
-</div>5
+</div>
+
+<style>
+  .test-card:first-child {
+    display: block !important;
+  }
+</style>
+
+
 
 <style>
   p {
