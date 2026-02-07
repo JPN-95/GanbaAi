@@ -84,19 +84,6 @@ class TestsController < ApplicationController
     end
   end
 
-  def category(cat)
-    @category = Test.where(category:"cat")
-  end
-
-  def level(lev)
-    # @level = Test.where(level: "lev")
-  end
-
-  def complete
-
-  end
-
-
   private
 
   def set_test
