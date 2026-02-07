@@ -8,25 +8,16 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    # fetch the user's tests
-    @user = current_user
-    @tests = current_user.tests
-    @counter = 1
+  @user = current_user
+  @tests = current_user.tests
+  @total_available_tests = Test.count
 
-    @total_available_tests = Test.count
+  @averages = @tests.group(:category).average(:score) || {}
 
-    # calculate the averages using the score model method Katie wrote
-    @averages = {}
-    ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |cat|
-      cat_tests = @tests.where(category: cat)
+  @completed_count = @tests.count
 
-      if cat_tests.any?
-        # sum up the scores from each test and divide by the number of tests
-        total_score = cat_tests.sum { |test| test.score }
-        @averages[cat] = (total_score / cat_tests.count).round(1)
-      else
-        @averages[cat] = 0
-      end
+  ['Vocabulary', 'Kanji', 'Grammar', 'Reading'].each do |cat|
+    @averages[cat] = @averages[cat] ? @averages[cat].round(0) : 0
     end
   end
 
