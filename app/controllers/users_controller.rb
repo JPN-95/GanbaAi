@@ -3,12 +3,17 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @tests = current_user.tests
+    @total_available_tests = Test.count
   end
 
   def dashboard
     # fetch the user's tests
+    @user = current_user
     @tests = current_user.tests
     @counter = 1
+
+    @total_available_tests = Test.count
 
     # calculate the averages using the score model method Katie wrote
     @averages = {}
